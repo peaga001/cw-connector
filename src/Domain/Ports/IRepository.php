@@ -6,7 +6,7 @@ namespace Domain\Ports;
 
 use Domain\Entities\Batch;
 
-interface IBatchRepository
+interface IRepository
 {
     public function getById(string $id): ?Batch;
     public function getBatchResult(string $id): array;

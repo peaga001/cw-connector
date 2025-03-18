@@ -7,12 +7,12 @@ namespace Application\UseCases;
 use App\Application\DTOs\SendBatchInBackgroundDTO;
 use App\Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
 use Domain\Entities\Batch;
-use Domain\Ports\IBatchRepository;
+use Domain\Ports\IRepository;
 
 class SendBatchInBackgroundUseCase
 {
     public function __construct(
-        private readonly IBatchRepository $repository
+        private readonly IRepository $repository
     ){}
 
     public function execute(Batch $batch): SendBatchInBackgroundDTO

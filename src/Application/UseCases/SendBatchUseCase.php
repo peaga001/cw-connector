@@ -7,12 +7,12 @@ namespace Application\UseCases;
 use App\Application\DTOs\BatchResultDTO;
 use Domain\Entities\Batch;
 use Domain\Exceptions\Batch\BatchSendFailedException;
-use Domain\Ports\IBatchRepository;
+use Domain\Ports\IRepository;
 
 class SendBatchUseCase
 {
     public function __construct(
-        private readonly IBatchRepository $repository
+        private readonly IRepository $repository
     ){}
 
     public function execute(Batch $batch): BatchResultDTO

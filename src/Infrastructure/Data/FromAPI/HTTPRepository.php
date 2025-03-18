@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\API;
+namespace App\Infrastructure\Data\FromAPI;
 
-use App\Infrastructure\API\Config\IClientAPI;
+use App\Infrastructure\Data\FromAPI\Config\IClient;
 use Domain\Entities\Batch;
-use Domain\Ports\IBatchRepository;
+use Domain\Ports\IRepository;
 
-class HTTPRepository implements IBatchRepository
+class HTTPRepository implements IRepository
 {
     public function __construct(
-        private readonly IClientAPI $clientAPI
+        private readonly IClient $client
     ){}
 
     public function getBatchResult(string $id): array
     {
-        // TODO: Implement getBatchResult() method.
+
     }
 
     public function getById(string $id): ?Batch

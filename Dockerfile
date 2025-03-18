@@ -1,4 +1,4 @@
-FROM php:8.4.3-alpine3.21@sha256:bca51c0ca81e240d1adf97d4ad43fb7c85fe5d0a0fb8cebdb84ac4c8ef13b95d
+FROM php:8.3.18RC1-alpine@sha256:3b2b6b0efd76364bdc45054d415688138bf1bd88370a9fba49488136b5284d35
 
 RUN apk add --no-cache \
     curl \

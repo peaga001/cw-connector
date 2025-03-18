@@ -1,7 +1,7 @@
 services:
-  automated-tests:
+  dev-cw-connector:
     build: .
-    container_name: php-automated-tests
+    container_name: dev-cw-connector
     volumes:
       - ./:/app
       - ./docker/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
