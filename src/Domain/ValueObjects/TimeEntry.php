@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\ValueObjects;
 
-use App\Domain\Exceptions\TimeEntry\InvalidDateException;
-use App\Domain\Exceptions\TimeEntry\InvalidHoursException;
+use Domain\Exceptions\TimeEntry\InvalidDateException;
+use Domain\Exceptions\TimeEntry\InvalidHoursException;
 use DateTime;
 
 class TimeEntry
@@ -36,6 +36,29 @@ class TimeEntry
         return new self(
             date: $date, hours: $hours
         );
+    }
+
+    /**
+     * @throws InvalidDateException
+     * @throws InvalidHoursException
+     */
+    public function isEqual(string $date, string $hours): bool
+    {
+        $date = DateTime::createFromFormat('Y-m-d', $date);
+
+        if(!$date){
+            throw new InvalidDateException;
+        }
+
+        $hours = DateTime::createFromFormat('H:i:s', $hours);
+
+        if(!$hours){
+            throw new InvalidHoursException;
+        }
+
+
+        return $this->hours->getTimestamp() === $hours->getTimestamp() &&
+            $this->date->getTimestamp() === $date->getTimestamp();
     }
 
     public function date(): DateTime
