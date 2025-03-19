@@ -47,9 +47,9 @@ class TimeSheet
     private function checkTimeEntries(): void
     {
         foreach ($this->timeEntries as $timeEntry){
-            $hasTimeEntry = $timeEntry instanceof TimeEntry;
+            $isTimeSheet = $timeEntry instanceof TimeEntry;
 
-            if(!$hasTimeEntry){
+            if(!$isTimeSheet){
                 throw new InvalidTimeEntriesException;
             }
         }
