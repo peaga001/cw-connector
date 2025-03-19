@@ -7,17 +7,14 @@ use Domain\Exceptions\TimeEntry\InvalidHoursException;
 use Domain\ErrorCodes\DomainErrorCodes;
 use Domain\ValueObjects\TimeEntry;
 use Tests\Support\CwTestCase;
-use DateTime;
 
 class TimeEntryTest extends CwTestCase
 {
     public function test_ShouldInstantiateTimeEntryFromDatetime(): void
     {
-        $dateTime = $this->faker->dateTime();
-
         $timeEntry = new TimeEntry(
-            date: $dateTime,
-            hours: $dateTime
+            date: $this->date(),
+            hours: $this->hours()
         );
 
         $this->assertInstanceOf(TimeEntry::class, $timeEntry);
@@ -29,11 +26,9 @@ class TimeEntryTest extends CwTestCase
      */
     public function test_ShouldInstantiateTimeEntryFromString(): void
     {
-        $dateTime = $this->faker->dateTime();
-
         $timeEntry = TimeEntry::create(
-            date: $dateTime->format('Y-m-d'),
-            hours: $dateTime->format('H:i:s'),
+            date: $this->date()->format('Y-m-d'),
+            hours: $this->hours()->format('H:i:s'),
         );
 
         $this->assertInstanceOf(TimeEntry::class, $timeEntry);
@@ -44,15 +39,13 @@ class TimeEntryTest extends CwTestCase
      */
     public function test_ShouldThrowExceptionWhenDateIsInvalid(): void
     {
-        $dateTime = $this->faker->dateTime();
-
         $this->expectException(InvalidDateException::class);
         $this->expectExceptionMessage('Date format is invalid!');
         $this->expectExceptionCode(DomainErrorCodes::TIME_ENTRY_INVALID_DATE);
 
         TimeEntry::create(
-            date: $dateTime->format('d/m/Y'),
-            hours: $dateTime->format('H:i:s')
+            date: $this->date()->format('d/m/Y'),
+            hours: $this->hours()->format('H:i:s')
         );
     }
 
@@ -62,15 +55,13 @@ class TimeEntryTest extends CwTestCase
      */
     public function test_ShouldThrowExceptionWhenHoursIsInvalid(): void
     {
-        $dateTime = $this->faker->dateTime();
-
         $this->expectException(InvalidHoursException::class);
         $this->expectExceptionMessage('Hours format is invalid!');
         $this->expectExceptionCode(DomainErrorCodes::TIME_ENTRY_INVALID_HOURS);
 
         TimeEntry::create(
-            date: $dateTime->format('Y-m-d'),
-            hours: $dateTime->format('H:i')
+            date: $this->date()->format('Y-m-d'),
+            hours: $this->hours()->format('H:i')
         );
     }
 
@@ -81,9 +72,8 @@ class TimeEntryTest extends CwTestCase
      */
     public function test_MustBeTrueWhenCompareToTheValues(): void
     {
-        $dateTime = $this->faker->dateTime();
-        $date = $dateTime->format('Y-m-d');
-        $hours = $dateTime->format('H:i:s');
+        $date = $this->date()->format('Y-m-d');
+        $hours = $this->hours()->format('H:i:s');
 
         $timeEntry = TimeEntry::create(
             date: $date,
@@ -104,16 +94,15 @@ class TimeEntryTest extends CwTestCase
      */
     public function test_MustBeFalseWhenCompareToDifferentDates(): void
     {
-        $dateTime = $this->faker->dateTime();
-        $hours = $dateTime->format('H:i:s');
+        $hours = $this->hours()->format('H:i:s');
 
         $timeEntry = TimeEntry::create(
-            date: $dateTime->format('Y-m-d'),
+            date: $this->date()->format('Y-m-d'),
             hours: $hours
         );
 
         $isEqual = $timeEntry->isEqual(
-            date: $this->faker->dateTime()->format('Y-m-d'),
+            date: $this->date()->format('Y-m-d'),
             hours: $hours
         );
 
@@ -126,17 +115,16 @@ class TimeEntryTest extends CwTestCase
      */
     public function test_MustBeFalseWhenCompareToDifferentHours(): void
     {
-        $dateTime = $this->faker->dateTime();
-        $date = $dateTime->format('Y-m-d');
+        $date = $this->date()->format('Y-m-d');
 
         $timeEntry = TimeEntry::create(
             date: $date,
-            hours: $dateTime->format('H:i:s')
+            hours: $this->hours()->format('H:i:s')
         );
 
         $isEqual = $timeEntry->isEqual(
             date: $date,
-            hours: $this->faker->dateTime()->format('H:i:s')
+            hours: $this->hours()->format('H:i:s')
         );
 
         $this->assertFalse($isEqual);
@@ -152,16 +140,16 @@ class TimeEntryTest extends CwTestCase
         $this->expectExceptionMessage('Date format is invalid!');
         $this->expectExceptionCode(DomainErrorCodes::TIME_ENTRY_INVALID_DATE);
 
-        $dateTime = $this->faker->dateTime();
-        $hours = $dateTime->format('H:i:s');
+        $date = $this->date();
+        $hours = $this->hours()->format('H:i:s');
 
         $timeEntry = TimeEntry::create(
-            date: $dateTime->format('Y-m-d'),
+            date: $date->format('Y-m-d'),
             hours: $hours
         );
 
         $timeEntry->isEqual(
-            date: $dateTime->format('d/m/Y'),
+            date: $date->format('d/m/Y'),
             hours: $hours
         );
     }
@@ -176,17 +164,17 @@ class TimeEntryTest extends CwTestCase
         $this->expectExceptionMessage('Hours format is invalid!');
         $this->expectExceptionCode(DomainErrorCodes::TIME_ENTRY_INVALID_HOURS);
 
-        $dateTime = $this->faker->dateTime();
-        $date = $dateTime->format('Y-m-d');
+        $date = $this->date()->format('Y-m-d');
+        $hours = $this->hours();
 
         $timeEntry = TimeEntry::create(
             date: $date,
-            hours: $dateTime->format('H:i:s')
+            hours: $hours->format('H:i:s')
         );
 
         $timeEntry->isEqual(
             date: $date,
-            hours: $dateTime->format('H:i')
+            hours: $hours->format('H:i')
         );
     }
 
@@ -196,12 +184,11 @@ class TimeEntryTest extends CwTestCase
      */
     public function test_ShouldReturnDate(): void
     {
-        $dateTime = $this->faker->dateTime();
-        $date = DateTime::createFromFormat('Y-m-d', $dateTime->format('Y-m-d'));
+        $date = $this->date();
 
         $timeEntry = TimeEntry::create(
-            date: $dateTime->format('Y-m-d'),
-            hours: $dateTime->format('H:i:s')
+            date: $date->format('Y-m-d'),
+            hours: $this->hours()->format('H:i:s')
         );
 
         $this->assertEquals($date->getTimestamp(), $timeEntry->date()->getTimestamp());
@@ -213,12 +200,11 @@ class TimeEntryTest extends CwTestCase
      */
     public function test_ShouldReturnHours(): void
     {
-        $dateTime = $this->faker->dateTime();
-        $hours = DateTime::createFromFormat('H:i:s', $dateTime->format('H:i:s'));
+        $hours = $this->hours();
 
         $timeEntry = TimeEntry::create(
-            date: $dateTime->format('Y-m-d'),
-            hours: $dateTime->format('H:i:s')
+            date: $this->date()->format('Y-m-d'),
+            hours: $hours->format('H:i:s')
         );
 
         $this->assertEquals($hours->getTimestamp(), $timeEntry->hours()->getTimestamp());

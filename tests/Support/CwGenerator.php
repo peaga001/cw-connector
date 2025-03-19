@@ -2,7 +2,12 @@
 
 namespace Tests\Support;
 
+use DateTime;
+use Domain\Enums\DocumentTypes;
+use Domain\ValueObjects\PersonId;
+use Domain\ValueObjects\TimeEntry;
 use Faker\Generator;
+use Mockery;
 
 trait CwGenerator
 {
@@ -10,5 +15,38 @@ trait CwGenerator
     public function documentNumber(): string
     {
         return $this->faker->randomNumber();
+    }
+
+    public function documentType(): DocumentTypes
+    {
+        return $this->faker->randomElement(DocumentTypes::cases());
+    }
+
+    public function timeEntries(int $quantity = 4): array
+    {
+        $timeEntries = [];
+
+        for ($index = 0; $index < $quantity; $index++) {
+            $timeEntries[] = Mockery::mock(TimeEntry::class, [$this->date(), $this->hours()]);
+        }
+
+        return $timeEntries;
+    }
+
+    public function personId(): PersonId
+    {
+        return Mockery::mock(PersonId::class, [$this->documentType(), $this->documentNumber()]);
+    }
+
+    public function date(): DateTime
+    {
+        $date = $this->faker->dateTime()->format('Y-m-d');
+        return DateTime::createFromFormat('Y-m-d', $date);
+    }
+
+    public function hours(): DateTime
+    {
+        $hours = $this->faker->dateTime()->format('H:i:s');
+        return DateTime::createFromFormat('H:i:s', $hours);
     }
 }
