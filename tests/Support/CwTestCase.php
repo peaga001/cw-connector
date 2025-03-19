@@ -8,7 +8,7 @@ use Faker\Factory;
 use Faker\Generator;
 use PHPUnit\Framework\TestCase;
 
-class BaseTestCase extends TestCase
+class CwTestCase extends TestCase
 {
     use CwGenerator;
     protected Generator $faker;

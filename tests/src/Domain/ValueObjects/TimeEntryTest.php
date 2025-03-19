@@ -6,10 +6,10 @@ use Domain\Exceptions\TimeEntry\InvalidDateException;
 use Domain\Exceptions\TimeEntry\InvalidHoursException;
 use Domain\ErrorCodes\DomainErrorCodes;
 use Domain\ValueObjects\TimeEntry;
-use Tests\Support\BaseTestCase;
+use Tests\Support\CwTestCase;
 use DateTime;
 
-class TimeEntryTest extends BaseTestCase
+class TimeEntryTest extends CwTestCase
 {
     public function test_ShouldInstantiateTimeEntryFromDatetime(): void
     {

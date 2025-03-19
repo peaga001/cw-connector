@@ -7,10 +7,10 @@ use Domain\Exceptions\PersonId\InvalidDocumentTypeException;
 use Domain\Enums\DocumentTypes;
 use Domain\ValueObjects\PersonId;
 use PHPUnit\Framework\Attributes\DataProviderExternal;
-use Tests\Support\BaseTestCase;
+use Tests\Support\CwTestCase;
 use Tests\Support\Providers\DocumentTypesProvider;
 
-class PersonIdTest extends BaseTestCase
+class PersonIdTest extends CwTestCase
 {
     #[DataProviderExternal(DocumentTypesProvider::class, 'all')]
     public function test_ShouldInstantiatePersonIdFromDocumentTypeEnum(DocumentTypes $documentType): void
