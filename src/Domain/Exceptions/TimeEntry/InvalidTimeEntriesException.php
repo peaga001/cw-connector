@@ -11,6 +11,6 @@ class InvalidTimeEntriesException extends Exception
 {
     public function __construct()
     {
-        parent::__construct('Time entries is invalid!', DomainErrorCodes::TIME_SHEET_INVALID_TIME_ENTRIES);
+        parent::__construct('Time entries is invalid!', DomainErrorCodes::TIME_ENTRY_INVALID_TIME_ENTRIES);
     }
 }

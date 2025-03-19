@@ -42,7 +42,7 @@ class TimeSheetTest extends CwTestCase
     {
         $this->expectException(InvalidTimeEntriesException::class);
         $this->expectExceptionMessage('Time entries is invalid!');
-        $this->expectExceptionCode(DomainErrorCodes::TIME_SHEET_INVALID_TIME_ENTRIES);
+        $this->expectExceptionCode(DomainErrorCodes::TIME_ENTRY_INVALID_TIME_ENTRIES);
 
         $timeEntries = $this->timeEntries();
         $timeEntries[] = 'invalid time entry';
