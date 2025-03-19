@@ -7,8 +7,8 @@ use App\Domain\Exceptions\PersonId\InvalidDocumentTypeException;
 use Domain\Enums\DocumentTypes;
 use Domain\ValueObjects\PersonId;
 use PHPUnit\Framework\Attributes\DataProviderExternal;
-use Tests\BaseTestCase;
-use Tests\Providers\DocumentTypesProvider;
+use Tests\Support\BaseTestCase;
+use Tests\Support\Providers\DocumentTypesProvider;
 
 class PersonIdTest extends BaseTestCase
 {
@@ -17,7 +17,7 @@ class PersonIdTest extends BaseTestCase
     {
         $personId = new PersonId(
             documentType: $documentType,
-            documentNumber: $this->faker->documentNumber()
+            documentNumber: $this->documentNumber()
         );
 
         $this->assertInstanceOf(PersonId::class, $personId);
@@ -32,7 +32,7 @@ class PersonIdTest extends BaseTestCase
     {
         $personId = PersonId::create(
             documentType: $documentType->value,
-            documentNumber: $this->faker->documentNumber()
+            documentNumber: $this->documentNumber()
         );
 
         $this->assertInstanceOf(PersonId::class, $personId);
@@ -44,11 +44,11 @@ class PersonIdTest extends BaseTestCase
 
         $this->expectException(InvalidDocumentTypeException::class);
         $this->expectExceptionMessage('Invalid document type!');
-        $this->expectExceptionCode(DomainErrorCodes::INVALID_DOCUMENT_TYPE);
+        $this->expectExceptionCode(DomainErrorCodes::PERSON_ID_INVALID_DOCUMENT_TYPE);
 
         $personId = PersonId::create(
             documentType: $invalidDocumentType,
-            documentNumber: $this->faker->documentNumber()
+            documentNumber: $this->documentNumber()
         );
 
         $this->assertInstanceOf(PersonId::class, $personId);
@@ -60,7 +60,7 @@ class PersonIdTest extends BaseTestCase
     #[DataProviderExternal(DocumentTypesProvider::class, 'all')]
     public function test_MustBeTrueWhenCompareToTheValues(DocumentTypes $documentType): void
     {
-        $documentNumber = $this->faker->documentNumber();
+        $documentNumber = $this->documentNumber();
 
         $personId = new PersonId(
             documentType: $documentType,
@@ -80,7 +80,7 @@ class PersonIdTest extends BaseTestCase
      */
     public function test_MustBeFalseWhenCompareToDifferentDocumentType(): void
     {
-        $documentNumber = $this->faker->documentNumber();
+        $documentNumber = $this->documentNumber();
 
         $personId = new PersonId(
             documentType: DocumentTypes::CPF,
@@ -101,7 +101,7 @@ class PersonIdTest extends BaseTestCase
     #[DataProviderExternal(DocumentTypesProvider::class, 'all')]
     public function test_MustBeFalseWhenCompareToDifferentDocumentNumber(DocumentTypes $documentType): void
     {
-        $documentNumber = $this->faker->documentNumber();
+        $documentNumber = $this->documentNumber();
         $differentDocumentNumber = (string) ((int) $documentNumber + 1);
 
         $personId = new PersonId($documentType, $differentDocumentNumber);
@@ -122,16 +122,16 @@ class PersonIdTest extends BaseTestCase
     {
         $this->expectException(InvalidDocumentTypeException::class);
         $this->expectExceptionMessage('Invalid document type!');
-        $this->expectExceptionCode(DomainErrorCodes::INVALID_DOCUMENT_TYPE);
+        $this->expectExceptionCode(DomainErrorCodes::PERSON_ID_INVALID_DOCUMENT_TYPE);
 
         $personId = new PersonId(
             documentType: $documentType,
-            documentNumber: $this->faker->documentNumber()
+            documentNumber: $this->documentNumber()
         );
 
         $personId->isEqual(
             documentType: 9999,
-            documentNumber: $this->faker->documentNumber()
+            documentNumber: $this->documentNumber()
         );
     }
 
@@ -140,7 +140,7 @@ class PersonIdTest extends BaseTestCase
     {
         $personId = new PersonId(
             documentType: $documentType,
-            documentNumber: $this->faker->documentNumber()
+            documentNumber: $this->documentNumber()
         );
 
         $this->assertEquals($documentType, $personId->getType());
@@ -149,7 +149,7 @@ class PersonIdTest extends BaseTestCase
     #[DataProviderExternal(DocumentTypesProvider::class, 'all')]
     public function test_ShouldReturnDocumentNumber(DocumentTypes $documentType): void
     {
-        $documentNumber = $this->faker->documentNumber();
+        $documentNumber = $this->documentNumber();
 
         $personId = new PersonId(
             documentType: $documentType,

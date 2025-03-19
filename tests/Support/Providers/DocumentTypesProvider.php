@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Providers;
+namespace Tests\Support\Providers;
 
 use Domain\Enums\DocumentTypes;
 
