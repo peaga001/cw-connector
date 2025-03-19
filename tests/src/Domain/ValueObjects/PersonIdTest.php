@@ -2,8 +2,8 @@
 
 namespace Tests\src\Domain\ValueObjects;
 
-use App\Domain\ErrorCodes\DomainErrorCodes;
-use App\Domain\Exceptions\PersonId\InvalidDocumentTypeException;
+use Domain\ErrorCodes\DomainErrorCodes;
+use Domain\Exceptions\PersonId\InvalidDocumentTypeException;
 use Domain\Enums\DocumentTypes;
 use Domain\ValueObjects\PersonId;
 use PHPUnit\Framework\Attributes\DataProviderExternal;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\ValueObjects;
 
-use App\Domain\Exceptions\PersonId\InvalidDocumentTypeException;
+use Domain\Exceptions\PersonId\InvalidDocumentTypeException;
 use Domain\Enums\DocumentTypes;
 
 class PersonId

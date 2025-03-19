@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Exceptions\PersonId;
+namespace Domain\Exceptions\PersonId;
 
-use App\Domain\ErrorCodes\DomainErrorCodes;
+use Domain\ErrorCodes\DomainErrorCodes;
 use Exception;
 
 class InvalidDocumentTypeException extends Exception

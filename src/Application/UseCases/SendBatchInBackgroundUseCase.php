@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\UseCases;
 
 use App\Application\DTOs\SendBatchInBackgroundDTO;
-use App\Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
+use Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
 use Domain\Entities\Batch;
 use Domain\Ports\IRepository;
 

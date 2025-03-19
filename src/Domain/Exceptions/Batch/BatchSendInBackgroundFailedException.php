@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Exceptions\Batch;
+namespace Domain\Exceptions\Batch;
 
 use Exception;
 
