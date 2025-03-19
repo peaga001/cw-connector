@@ -3,6 +3,7 @@
 namespace Tests\Support;
 
 use DateTime;
+use Domain\Entities\TimeSheet;
 use Domain\Enums\DocumentTypes;
 use Domain\ValueObjects\PersonId;
 use Domain\ValueObjects\TimeEntry;
@@ -31,6 +32,20 @@ trait CwGenerator
         }
 
         return $timeEntries;
+    }
+
+    public function timeSheets(int $quantity = 30, $entriesPerTimeSheet = 4): array
+    {
+        $timeSheets = [];
+
+        for ($index = 0; $index < $quantity; $index++) {
+            $timeSheets[] = Mockery::mock(TimeSheet::class, [
+                $this->timeEntries($entriesPerTimeSheet),
+                $this->personId()
+            ]);
+        }
+
+        return $timeSheets;
     }
 
     public function personId(): PersonId
