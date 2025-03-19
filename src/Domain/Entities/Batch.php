@@ -9,8 +9,8 @@ use Domain\Exceptions\TimeSheet\InvalidTimeSheetsException;
 
 class Batch
 {
-    private readonly ?string $batchId;
-    private readonly BatchStatus $batchStatus;
+    private ?string $batchId;
+    private BatchStatus $batchStatus;
 
     /**
      * @param $timeSheets TimeSheet[]
@@ -43,6 +43,16 @@ class Batch
     public function batchId(): ?string
     {
         return $this->batchId;
+    }
+
+    public function setBatchId(string $batchId): void
+    {
+        $this->batchId = $batchId;
+    }
+
+    public function setStatus(BatchStatus $status): void
+    {
+        $this->batchStatus = $status;
     }
 
     public function status(): BatchStatus

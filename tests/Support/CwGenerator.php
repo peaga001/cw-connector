@@ -3,6 +3,7 @@
 namespace Tests\Support;
 
 use DateTime;
+use Domain\Entities\Batch;
 use Domain\Entities\TimeSheet;
 use Domain\Enums\DocumentTypes;
 use Domain\ValueObjects\PersonId;
@@ -63,5 +64,23 @@ trait CwGenerator
     {
         $hours = $this->faker->dateTime()->format('H:i:s');
         return DateTime::createFromFormat('H:i:s', $hours);
+    }
+
+    public function batch($withId = false): Batch
+    {
+        $batch = Mockery::mock(Batch::class, [$this->timeSheets()]);
+
+        if($withId){
+            $batch->makePartial();
+            $batch->setBatchId($this->batchId());
+        }
+
+        return $batch;
+    }
+
+    public function batchId(): string
+    {
+        $sha = $this->faker->sha256();
+        return substr($sha, 0, 8);
     }
 }

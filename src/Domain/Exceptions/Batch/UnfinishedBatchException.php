@@ -7,10 +7,10 @@ namespace Domain\Exceptions\Batch;
 use Domain\ErrorCodes\DomainErrorCodes;
 use Exception;
 
-class BatchNotFoundException extends Exception
+class UnfinishedBatchException extends Exception
 {
     public function __construct()
     {
-        parent::__construct('Batch not found!', DomainErrorCodes::BATCH_NOT_FOUND_EXCEPTION);
+        parent::__construct('Batch is not finished!', DomainErrorCodes::BATCH_UNFINISHED_BATCH);
     }
 }

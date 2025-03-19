@@ -7,15 +7,13 @@ namespace App\Application\DTOs;
 class BatchResultDTO
 {
     public function __construct(
-        public array $result,
-        public array $errors
+        public array $result
     ){}
 
     public function toArray(): array
     {
         return [
-            'result' => $this->result,
-            'errors' => $this->errors
+            'result' => $this->result
         ];
     }
 }

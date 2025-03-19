@@ -87,4 +87,37 @@ class BatchTest extends CwTestCase
 
         $this->assertNull($batch->batchId());
     }
+
+    /**
+     * @throws InvalidTimeSheetsException
+     */
+    public function test_ShouldReturnBatchIdDefinedAfterInsertingBatchId(): void
+    {
+        $batchId = $this->batchId();
+
+        $batch = Batch::create(
+            timeSheets: $this->timeSheets()
+        );
+
+        $this->assertNull($batch->batchId());
+
+        $batch->setBatchId($batchId);
+        $this->assertEquals($batchId, $batch->batchId());
+    }
+
+    /**
+     * @throws InvalidTimeSheetsException
+     */
+    public function test_ShouldReturnBatchStatusDefinedAfterInsertingBatchStatus()
+    {
+        $batchStatus = BatchStatus::FAILED;
+        $batch = Batch::create(
+            timeSheets: $this->timeSheets()
+        );
+
+        $this->assertEquals(BatchStatus::CREATED, $batch->status());
+
+        $batch->setStatus($batchStatus);
+        $this->assertEquals($batchStatus, $batch->status());
+    }
 }
