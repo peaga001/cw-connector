@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Exceptions\TimeEntry;
+namespace Domain\Exceptions\TimeEntry;
 
 use Domain\ErrorCodes\DomainErrorCodes;
 use Exception;

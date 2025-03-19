@@ -2,7 +2,7 @@
 
 namespace Tests\src\Domain\Entities;
 
-use App\Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
+use Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
 use Domain\Entities\TimeSheet;
 use Domain\ErrorCodes\DomainErrorCodes;
 use Tests\Support\CwTestCase;

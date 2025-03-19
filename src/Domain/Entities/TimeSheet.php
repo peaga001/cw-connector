@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Entities;
 
-use App\Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
+use Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
 use Domain\ValueObjects\PersonId;
 use Domain\ValueObjects\TimeEntry;
 
