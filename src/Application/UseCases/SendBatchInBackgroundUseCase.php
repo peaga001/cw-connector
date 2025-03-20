@@ -15,18 +15,19 @@ class SendBatchInBackgroundUseCase
         private readonly IRepository $repository
     ){}
 
+    /**
+     * @throws BatchSendInBackgroundFailedException
+     */
     public function execute(Batch $batch): SendBatchInBackgroundDTO
     {
-        $errors = [];
         $batch = $this->repository->sendBatchInBackground(batch: $batch);
 
         if (!$batch) {
-            $errors[] = new BatchSendInBackgroundFailedException();
+            throw new BatchSendInBackgroundFailedException();
         }
 
         return new SendBatchInBackgroundDTO(
-            batchId: $batch->batchId(),
-            errors: $errors
+            batchId: $batch->batchId()
         );
     }
 }

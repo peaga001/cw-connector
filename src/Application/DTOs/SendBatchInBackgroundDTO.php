@@ -7,15 +7,13 @@ namespace Application\DTOs;
 class SendBatchInBackgroundDTO
 {
     public function __construct(
-        public string $batchId,
-        public array $errors
+        public string $batchId
     ){}
 
     public function toArray(): array
     {
         return [
-            'batchId' => $this->batchId,
-            'errors'  => $this->errors
+            'batchId' => $this->batchId
         ];
     }
 }
