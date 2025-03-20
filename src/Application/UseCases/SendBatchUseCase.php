@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\UseCases;
 
-use App\Application\DTOs\BatchResultDTO;
+use Application\DTOs\BatchResultDTO;
 use Domain\Entities\Batch;
 use Domain\Exceptions\Batch\BatchSendFailedException;
 use Domain\Ports\IRepository;

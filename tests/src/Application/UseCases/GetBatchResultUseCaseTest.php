@@ -2,7 +2,7 @@
 
 namespace Tests\src\Application\UseCases;
 
-use App\Application\DTOs\BatchResultDTO;
+use Application\DTOs\BatchResultDTO;
 use Application\UseCases\GetBatchResultUseCase;
 use Domain\Enums\BatchStatus;
 use Domain\ErrorCodes\DomainErrorCodes;
