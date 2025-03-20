@@ -15,18 +15,19 @@ class SendBatchUseCase
         private readonly IRepository $repository
     ){}
 
+    /**
+     * @throws BatchSendFailedException
+     */
     public function execute(Batch $batch): BatchResultDTO
     {
-        $errors = [];
         $result = $this->repository->sendBatch(batch: $batch);
 
         if (!$result) {
-            $errors[] = new BatchSendFailedException;
+            throw new BatchSendFailedException;
         }
 
         return new BatchResultDTO(
-            result: $result,
-            errors: $errors
+            result: $result
         );
     }
 }

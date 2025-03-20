@@ -11,4 +11,5 @@ class DomainErrorCodes
     public const int TIME_SHEET_INVALID_TIME_SHEETS = 5;
     public const int BATCH_NOT_FOUND_EXCEPTION = 6;
     public const int BATCH_UNFINISHED_BATCH = 7;
+    public const int BATCH_SEND_FAILED = 8;
 }
