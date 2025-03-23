@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Application\UseCases;
 
-use Application\DTOs\SendBatchInBackgroundDTO;
-use Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
 use Domain\Entities\Batch;
+use Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
 use Domain\Ports\IRepository;
 
 class SendBatchInBackgroundUseCase
@@ -18,7 +17,7 @@ class SendBatchInBackgroundUseCase
     /**
      * @throws BatchSendInBackgroundFailedException
      */
-    public function execute(Batch $batch): SendBatchInBackgroundDTO
+    public function execute(Batch $batch): string
     {
         $batch = $this->repository->sendBatchInBackground(batch: $batch);
 
@@ -26,8 +25,6 @@ class SendBatchInBackgroundUseCase
             throw new BatchSendInBackgroundFailedException();
         }
 
-        return new SendBatchInBackgroundDTO(
-            batchId: $batch->batchId()
-        );
+        return $batch->batchId();
     }
 }

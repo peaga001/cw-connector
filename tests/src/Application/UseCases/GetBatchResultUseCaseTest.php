@@ -2,13 +2,13 @@
 
 namespace Tests\src\Application\UseCases;
 
-use Application\DTOs\BatchResultDTO;
 use Application\UseCases\GetBatchResultUseCase;
 use Domain\Enums\BatchStatus;
 use Domain\ErrorCodes\DomainErrorCodes;
 use Domain\Exceptions\Batch\BatchNotFoundException;
 use Domain\Exceptions\Batch\UnfinishedBatchException;
 use Domain\Ports\IRepository;
+use Domain\ValueObjects\BatchResult\BatchResult;
 use Mockery;
 use Tests\Support\CwTestCase;
 
@@ -36,7 +36,7 @@ class GetBatchResultUseCaseTest extends CwTestCase
      */
     public function test_ShouldExecute(): void
     {
-        $batch = $this->batch(withId: true);
+        $batch = $this->batch(withId: true, withResult: true);
         $batchId = $batch->batchId();
         $batch->setStatus(BatchStatus::FINISHED);
 
@@ -44,15 +44,15 @@ class GetBatchResultUseCaseTest extends CwTestCase
             ->with($batchId)->once()->andReturn($batch);
 
         $this->repository->shouldReceive('getBatchResult')
-            ->with($batchId)->once()->andReturn(['status' => 'success']);
+            ->with($batchId)->once()->andReturn($batch);
 
         $useCase = new GetBatchResultUseCase(
             repository: $this->repository
         );
 
-        $dto = $useCase->execute(batchId: $batchId);
+        $batchResult = $useCase->execute(batchId: $batchId);
 
-        $this->assertInstanceOf(BatchResultDTO::class, $dto);
+        $this->assertInstanceOf(BatchResult::class, $batchResult);
     }
 
     /**
@@ -71,7 +71,7 @@ class GetBatchResultUseCaseTest extends CwTestCase
             ->with($batchId)->once()->andReturn($batch);
 
         $this->repository->shouldReceive('getBatchResult')
-            ->with($batchId)->once()->andReturn(['status' => 'success']);
+            ->with($batchId)->once()->andReturn($batch);
 
         $useCase = new GetBatchResultUseCase(
             repository: $this->repository

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Exceptions\PersonId;
 
+use App\Domain\Exceptions\DomainException;
 use Domain\ErrorCodes\DomainErrorCodes;
-use Exception;
 
-class InvalidDocumentTypeException extends Exception
+class InvalidDocumentTypeException extends DomainException
 {
     public function __construct()
     {

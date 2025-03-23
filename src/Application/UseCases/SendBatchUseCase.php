@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Application\UseCases;
 
-use Application\DTOs\BatchResultDTO;
 use Domain\Entities\Batch;
 use Domain\Exceptions\Batch\BatchSendFailedException;
 use Domain\Ports\IRepository;
+use Domain\ValueObjects\BatchResult\BatchResult;
 
 class SendBatchUseCase
 {
@@ -18,16 +18,14 @@ class SendBatchUseCase
     /**
      * @throws BatchSendFailedException
      */
-    public function execute(Batch $batch): BatchResultDTO
+    public function execute(Batch $batch): BatchResult
     {
-        $result = $this->repository->sendBatch(batch: $batch);
+        $sentBatch = $this->repository->sendBatch(batch: $batch);
 
-        if (!$result) {
+        if (!$sentBatch) {
             throw new BatchSendFailedException;
         }
 
-        return new BatchResultDTO(
-            result: $result
-        );
+        return $sentBatch->result();
     }
 }

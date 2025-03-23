@@ -4,34 +4,50 @@ declare(strict_types=1);
 
 namespace Domain\Entities;
 
+use Domain\ValueObjects\BatchResult\BatchResult;
 use Domain\Enums\BatchStatus;
 use Domain\Exceptions\TimeSheet\InvalidTimeSheetsException;
 
 class Batch
 {
-    private ?string $batchId;
     private BatchStatus $batchStatus;
+    private BatchResult $batchResult;
+    private array $timeSheets;
+    private ?string $batchId;
 
     /**
      * @param $timeSheets TimeSheet[]
      * @throws InvalidTimeSheetsException
      */
     public function __construct(
-        private readonly array $timeSheets
+        array $timeSheets,
+        ?string $batchId = null,
+        ?BatchStatus $batchStatus = null,
+        ?BatchResult $batchResult = null
     ){
-        $this->checkTimeSheets();
+        $this->batchStatus = $batchStatus ?? BatchStatus::CREATED;
+        $this->batchResult = $batchResult ?? BatchResult::create([]);
+        $this->timeSheets = $timeSheets;
+        $this->batchId = $batchId;
 
-        $this->batchStatus = BatchStatus::CREATED;
-        $this->batchId = null;
+        $this->checkTimeSheets();
     }
 
     /**
      * @throws InvalidTimeSheetsException
      */
-    public static function create(array $timeSheets): self
+    public static function create(
+        array $timeSheets,
+        int $batchStatus = BatchStatus::CREATED->value,
+        BatchResult $batchResult = null,
+        string $batchId = null,
+    ): self
     {
         return new self(
-            timeSheets: $timeSheets
+            timeSheets: $timeSheets,
+            batchId: $batchId,
+            batchStatus: $batchStatus ? BatchStatus::tryFrom($batchStatus) : BatchStatus::CREATED,
+            batchResult: $batchResult
         );
     }
 
@@ -55,9 +71,19 @@ class Batch
         $this->batchStatus = $status;
     }
 
+    public function setResult(BatchResult $result): void
+    {
+        $this->batchResult = $result;
+    }
+
     public function status(): BatchStatus
     {
         return $this->batchStatus;
+    }
+
+    public function result(): ?BatchResult
+    {
+        return $this->batchResult;
     }
 
     /**

@@ -4,26 +4,23 @@ declare(strict_types=1);
 
 namespace Application\UseCases;
 
-use Application\DTOs\BatchResultDTO;
-use Domain\Entities\Batch;
 use Domain\Enums\BatchStatus;
 use Domain\Exceptions\Batch\BatchNotFoundException;
 use Domain\Exceptions\Batch\UnfinishedBatchException;
 use Domain\Ports\IRepository;
+use Domain\ValueObjects\BatchResult\BatchResult;
 
 class GetBatchResultUseCase
 {
     public function __construct(
         private readonly IRepository $repository
-    ) {
-
-    }
+    ) {}
 
     /**
      * @throws BatchNotFoundException
      * @throws UnfinishedBatchException
      */
-    public function execute(string $batchId): BatchResultDTO
+    public function execute(string $batchId): BatchResult
     {
         $batch = $this->repository->getById($batchId);
 
@@ -35,10 +32,6 @@ class GetBatchResultUseCase
             throw new UnfinishedBatchException;
         }
 
-        $result = $this->repository->getBatchResult($batchId);
-
-        return new BatchResultDTO(
-            result: $result
-        );
+        return $this->repository->getBatchResult($batchId)->result();
     }
 }

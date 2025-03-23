@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Exceptions\TimeSheet;
 
+use App\Domain\Exceptions\DomainException;
 use Domain\ErrorCodes\DomainErrorCodes;
-use Exception;
 
-class InvalidTimeSheetsException extends Exception
+class InvalidTimeSheetsException extends DomainException
 {
     public function __construct()
     {

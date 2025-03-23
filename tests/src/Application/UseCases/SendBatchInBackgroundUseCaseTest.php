@@ -2,7 +2,6 @@
 
 namespace Tests\src\Application\UseCases;
 
-use Application\DTOs\SendBatchInBackgroundDTO;
 use Application\UseCases\SendBatchInBackgroundUseCase;
 use Domain\ErrorCodes\DomainErrorCodes;
 use Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
@@ -42,9 +41,9 @@ class SendBatchInBackgroundUseCaseTest extends CwTestCase
             repository: $this->repository
         );
 
-        $dto = $useCase->execute(batch: $batch);
+        $batchId = $useCase->execute(batch: $batch);
 
-        $this->assertInstanceOf(SendBatchInBackgroundDTO::class, $dto);
+        $this->assertEquals($batch->batchId(), $batchId);
     }
 
     /**

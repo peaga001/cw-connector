@@ -2,13 +2,13 @@
 
 namespace Tests\src\Application\UseCases;
 
-use Application\DTOs\BatchCurrentStatusDTO;
 use Application\UseCases\GetCurrentBatchStatusUseCase;
+use Domain\Enums\BatchStatus;
 use Domain\ErrorCodes\DomainErrorCodes;
 use Domain\Exceptions\Batch\BatchNotFoundException;
 use Domain\Ports\IRepository;
-use Mockery;
 use Tests\Support\CwTestCase;
+use Mockery;
 
 class GetCurrentBatchStatusUseCaseTest extends CwTestCase
 {
@@ -43,9 +43,10 @@ class GetCurrentBatchStatusUseCaseTest extends CwTestCase
             repository: $this->repository
         );
 
-        $dto = $useCase->execute(batchId: $batchId);
+        $status = $useCase->execute(batchId: $batchId);
 
-        $this->assertInstanceOf(BatchCurrentStatusDTO::class, $dto);
+        $this->assertIsInt($status);
+        $this->assertContains(BatchStatus::tryFrom($status), BatchStatus::cases());
     }
 
     /**

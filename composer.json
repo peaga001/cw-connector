@@ -39,7 +39,6 @@
   "require": {
     "php": "^8.3",
     "ext-iconv": "*",
-        "guzzle/guzzle": "^3.9",
-        "php-di/php-di": "^7.0"
+        "guzzlehttp/guzzle": "^7.9"
   }
 }

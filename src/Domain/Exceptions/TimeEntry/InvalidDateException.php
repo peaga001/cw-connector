@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Exceptions\TimeEntry;
 
+use App\Domain\Exceptions\DomainException;
 use Domain\ErrorCodes\DomainErrorCodes;
-use Exception;
 
-class InvalidDateException extends Exception
+class InvalidDateException extends DomainException
 {
     public function __construct()
     {

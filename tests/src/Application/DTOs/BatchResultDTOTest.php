@@ -2,7 +2,7 @@
 
 namespace Tests\src\Application\DTOs;
 
-use Application\DTOs\BatchResultDTO;
+use App\Application\DTOs\Batch\BatchResultDTO;
 use Tests\Support\CwTestCase;
 
 class BatchResultDTOTest extends CwTestCase
@@ -22,6 +22,6 @@ class BatchResultDTOTest extends CwTestCase
             result: []
         );
 
-        $this->assertEquals(['result' => []], $dto->toArray());
+        $this->assertEquals([], $dto->toEntity()->data());
     }
 }

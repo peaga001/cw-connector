@@ -33,18 +33,19 @@ class ClockWiseManager
         try {
 
             $batchResult = $this->getBatchResultUseCase->execute($batchId);
-            return $batchResult->toArray();
+            return $batchResult->data();
+
         }catch (Exception $exception) {
             //
         }
     }
 
-    public function getCurrentStatus(string $batchId): array
+    public function getCurrentStatus(string $batchId): int
     {
         try {
 
-            $batchResult = $this->getCurrentBatchStatusUseCase->execute($batchId);
-            return $batchResult->toArray();
+            return $this->getCurrentBatchStatusUseCase->execute($batchId);
+
         }catch (Exception $exception) {
             //
         }
@@ -53,20 +54,18 @@ class ClockWiseManager
     public function send(Batch $batch)
     {
         try {
-
             $batchResult = $this->sendBatchUseCase->execute($batch);
-            return $batchResult->toArray();
+            return $batchResult->data();
         }catch (Exception $exception) {
             //
         }
     }
 
-    public function sendInBackground(Batch $batch)
+    public function sendInBackground(Batch $batch): string
     {
         try {
 
-            $batchResult = $this->sendBatchInBackgroundUseCase->execute($batch);
-            return $batchResult->toArray();
+            return $this->sendBatchInBackgroundUseCase->execute($batch);
         }catch (Exception $exception) {
             //
         }

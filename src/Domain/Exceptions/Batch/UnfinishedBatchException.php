@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Exceptions\Batch;
 
+use App\Domain\Exceptions\DomainException;
 use Domain\ErrorCodes\DomainErrorCodes;
-use Exception;
 
-class UnfinishedBatchException extends Exception
+class UnfinishedBatchException extends DomainException
 {
     public function __construct()
     {

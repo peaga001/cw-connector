@@ -2,11 +2,11 @@
 
 namespace Tests\src\Application\UseCases;
 
-use Application\DTOs\BatchResultDTO;
 use Application\UseCases\SendBatchUseCase;
 use Domain\ErrorCodes\DomainErrorCodes;
 use Domain\Exceptions\Batch\BatchSendFailedException;
 use Domain\Ports\IRepository;
+use Domain\ValueObjects\BatchResult\BatchResult;
 use Mockery;
 use Tests\Support\CwTestCase;
 
@@ -33,18 +33,18 @@ class SendBatchUseCaseTest extends CwTestCase
      */
     public function test_ShouldExecute(): void
     {
-        $batch = $this->batch();
+        $batch = $this->batch(withResult: true);
 
         $this->repository->shouldReceive('sendBatch')
-            ->with($batch)->once()->andReturn(['status' => 'success']);
+            ->with($batch)->once()->andReturn($batch);
 
         $useCase = new SendBatchUseCase(
             repository: $this->repository
         );
 
-        $dto = $useCase->execute(batch: $batch);
+        $batchResult = $useCase->execute(batch: $batch);
 
-        $this->assertInstanceOf(BatchResultDTO::class, $dto);
+        $this->assertInstanceOf(BatchResult::class, $batchResult);
     }
 
     /**

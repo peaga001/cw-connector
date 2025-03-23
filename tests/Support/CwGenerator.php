@@ -6,6 +6,7 @@ use DateTime;
 use Domain\Entities\Batch;
 use Domain\Entities\TimeSheet;
 use Domain\Enums\DocumentTypes;
+use Domain\ValueObjects\BatchResult\BatchResult;
 use Domain\ValueObjects\PersonId;
 use Domain\ValueObjects\TimeEntry;
 use Faker\Generator;
@@ -66,13 +67,21 @@ trait CwGenerator
         return DateTime::createFromFormat('H:i:s', $hours);
     }
 
-    public function batch($withId = false): Batch
+    public function batch($withId = false, $withResult = false): Batch
     {
         $batch = Mockery::mock(Batch::class, [$this->timeSheets()]);
+        $makePartial = $withId || $withResult;
+
+        if($makePartial){
+            $batch->makePartial();
+        }
 
         if($withId){
-            $batch->makePartial();
             $batch->setBatchId($this->batchId());
+        }
+
+        if($withResult){
+            $batch->setResult($this->batchResult());
         }
 
         return $batch;
@@ -82,5 +91,10 @@ trait CwGenerator
     {
         $sha = $this->faker->sha256();
         return substr($sha, 0, 8);
+    }
+
+    public function batchResult(): BatchResult
+    {
+        return Mockery::mock(BatchResult::class, [[]]);
     }
 }
