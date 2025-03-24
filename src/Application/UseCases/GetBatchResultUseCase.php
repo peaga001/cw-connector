@@ -4,11 +4,18 @@ declare(strict_types=1);
 
 namespace Application\UseCases;
 
+//ValueObjects
+use Domain\ValueObjects\BatchResult;
+
+//Enums
 use Domain\Enums\BatchStatus;
-use Domain\Exceptions\Batch\BatchNotFoundException;
+
+//Exceptions
 use Domain\Exceptions\Batch\UnfinishedBatchException;
+use Domain\Exceptions\Batch\BatchNotFoundException;
+
+//Ports
 use Domain\Ports\IRepository;
-use Domain\ValueObjects\BatchResult\BatchResult;
 
 class GetBatchResultUseCase
 {

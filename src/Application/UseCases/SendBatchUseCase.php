@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace Application\UseCases;
 
+//ValueObjects
+use Domain\ValueObjects\BatchResult;
+
+//Entities
 use Domain\Entities\Batch;
+
+//Exceptions
 use Domain\Exceptions\Batch\BatchSendFailedException;
+
+//Ports
 use Domain\Ports\IRepository;
-use Domain\ValueObjects\BatchResult\BatchResult;
 
 class SendBatchUseCase
 {

@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Application\UseCases;
 
+//Entities
 use Domain\Entities\Batch;
+
+//Exceptions
 use Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
+
+//Ports
 use Domain\Ports\IRepository;
 
 class SendBatchInBackgroundUseCase

@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Application\UseCases;
 
+//Exceptions
 use Domain\Exceptions\Batch\BatchNotFoundException;
+
+//Ports
 use Domain\Ports\IRepository;
 
 class GetCurrentBatchStatusUseCase
