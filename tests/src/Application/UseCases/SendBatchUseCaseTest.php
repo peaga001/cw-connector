@@ -2,13 +2,24 @@
 
 namespace Tests\src\Application\UseCases;
 
+//ValueObjects
+use Domain\ValueObjects\BatchResult;
+
+//UseCases
 use Application\UseCases\SendBatchUseCase;
+
+//ErrorCodes
 use Domain\ErrorCodes\DomainErrorCodes;
+
+//Exceptions
 use Domain\Exceptions\Batch\BatchSendFailedException;
+
+//Ports
 use Domain\Ports\IRepository;
-use Domain\ValueObjects\BatchResult\BatchResult;
-use Mockery;
+
+//TestingTools
 use Tests\Support\CwTestCase;
+use Mockery;
 
 class SendBatchUseCaseTest extends CwTestCase
 {

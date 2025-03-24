@@ -2,12 +2,21 @@
 
 namespace Tests\src\Application\UseCases;
 
+//UseCases
 use Application\UseCases\SendBatchInBackgroundUseCase;
+
+//ErrorCodes
 use Domain\ErrorCodes\DomainErrorCodes;
+
+//Exceptions
 use Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
+
+//Ports
 use Domain\Ports\IRepository;
-use Mockery;
+
+//TestingTools
 use Tests\Support\CwTestCase;
+use Mockery;
 
 class SendBatchInBackgroundUseCaseTest extends CwTestCase
 {

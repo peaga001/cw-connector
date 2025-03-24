@@ -2,11 +2,22 @@
 
 namespace Tests\src\Application\UseCases;
 
+//UseCases
 use Application\UseCases\GetCurrentBatchStatusUseCase;
+
+//Enums
 use Domain\Enums\BatchStatus;
+
+//ErrorCodes
 use Domain\ErrorCodes\DomainErrorCodes;
+
+//Exceptions
 use Domain\Exceptions\Batch\BatchNotFoundException;
+
+//Ports
 use Domain\Ports\IRepository;
+
+//TestingTools
 use Tests\Support\CwTestCase;
 use Mockery;
 

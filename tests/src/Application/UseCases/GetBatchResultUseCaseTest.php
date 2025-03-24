@@ -2,15 +2,28 @@
 
 namespace Tests\src\Application\UseCases;
 
+//ValueObjects
+use Domain\ValueObjects\BatchResult;
+
+//UseCases
 use Application\UseCases\GetBatchResultUseCase;
+
+//Enums
 use Domain\Enums\BatchStatus;
+
+//ErrorCodes
 use Domain\ErrorCodes\DomainErrorCodes;
+
+//Exceptions
 use Domain\Exceptions\Batch\BatchNotFoundException;
 use Domain\Exceptions\Batch\UnfinishedBatchException;
+
+//Ports
 use Domain\Ports\IRepository;
-use Domain\ValueObjects\BatchResult\BatchResult;
-use Mockery;
+
+//TestingTools
 use Tests\Support\CwTestCase;
+use Mockery;
 
 class GetBatchResultUseCaseTest extends CwTestCase
 {
