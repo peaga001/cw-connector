@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\ValueObjects;
 
-use Domain\Exceptions\PersonId\InvalidDocumentTypeException;
+//Enums
 use Domain\Enums\DocumentTypes;
+
+//Exceptions
+use Domain\Exceptions\PersonId\InvalidDocumentTypeException;
 
 class PersonId
 {
@@ -53,5 +56,13 @@ class PersonId
     public function getNumber(): string
     {
         return $this->documentNumber;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'documentType' => $this->documentType->value,
+            'documentNumber' => $this->documentNumber
+        ];
     }
 }

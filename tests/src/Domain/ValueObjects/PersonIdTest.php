@@ -2,13 +2,22 @@
 
 namespace Tests\src\Domain\ValueObjects;
 
-use Domain\ErrorCodes\DomainErrorCodes;
-use Domain\Exceptions\PersonId\InvalidDocumentTypeException;
+//Enums
 use Domain\Enums\DocumentTypes;
+
+//Exceptions
+use Domain\Exceptions\PersonId\InvalidDocumentTypeException;
+
+//ErrorCodes
+use Domain\ErrorCodes\DomainErrorCodes;
+
+//ValueObjects
 use Domain\ValueObjects\PersonId;
+
+//TestingTools
 use PHPUnit\Framework\Attributes\DataProviderExternal;
-use Tests\Support\CwTestCase;
 use Tests\Support\Providers\DocumentTypesProvider;
+use Tests\Support\CwTestCase;
 
 class PersonIdTest extends CwTestCase
 {
@@ -157,5 +166,22 @@ class PersonIdTest extends CwTestCase
         );
 
         $this->assertEquals($documentNumber, $personId->getNumber());
+    }
+
+    /**
+     * @throws InvalidDocumentTypeException
+     */
+    #[DataProviderExternal(DocumentTypesProvider::class, 'all')]
+    public function test_ShouldReturnTheValuesCorrectlyWhenCallingToArray(DocumentTypes $documentType): void
+    {
+        $personId = PersonId::create(
+            documentType: $this->documentType()->value,
+            documentNumber: $this->documentNumber()
+        );
+
+        $this->assertEquals([
+            'documentType' => $personId->getType()->value,
+            'documentNumber' => $personId->getNumber()
+        ], $personId->toArray());
     }
 }
