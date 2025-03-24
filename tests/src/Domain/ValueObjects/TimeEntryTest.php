@@ -2,10 +2,17 @@
 
 namespace Tests\src\Domain\ValueObjects;
 
+//ValueObjects
+use Domain\ValueObjects\TimeEntry;
+
+//ErrorCodes
+use Domain\ErrorCodes\DomainErrorCodes;
+
+//Exceptions
 use Domain\Exceptions\TimeEntry\InvalidDateException;
 use Domain\Exceptions\TimeEntry\InvalidHoursException;
-use Domain\ErrorCodes\DomainErrorCodes;
-use Domain\ValueObjects\TimeEntry;
+
+//TestingTools
 use Tests\Support\CwTestCase;
 
 class TimeEntryTest extends CwTestCase
@@ -208,5 +215,22 @@ class TimeEntryTest extends CwTestCase
         );
 
         $this->assertEquals($hours->getTimestamp(), $timeEntry->hours()->getTimestamp());
+    }
+
+    /**
+     * @throws InvalidDateException
+     * @throws InvalidHoursException
+     */
+    public function test_ShouldReturnTheValuesCorrectlyWhenCallingToArray(): void
+    {
+        $timeEntry = TimeEntry::create(
+            date: $this->date()->format('Y-m-d'),
+            hours: $this->hours()->format('H:i:s')
+        );
+
+        $this->assertEquals([
+            'date' => $timeEntry->date()->format('Y-m-d'),
+            'hours' => $timeEntry->hours()->format('H:i:s')
+        ], $timeEntry->toArray());
     }
 }

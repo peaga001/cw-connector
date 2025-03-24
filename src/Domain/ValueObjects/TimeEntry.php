@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\ValueObjects;
 
+//Exceptions
 use Domain\Exceptions\TimeEntry\InvalidDateException;
 use Domain\Exceptions\TimeEntry\InvalidHoursException;
+
+//TestingTools
 use DateTime;
 
 class TimeEntry
@@ -69,5 +72,13 @@ class TimeEntry
     public function hours(): DateTime
     {
         return $this->hours;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'date' => $this->date->format('Y-m-d'),
+            'hours' => $this->hours->format('H:i:s')
+        ];
     }
 }
