@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Domain\Entities;
 
-use Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
-use Domain\ValueObjects\PersonId;
+//ValueObjects
 use Domain\ValueObjects\TimeEntry;
+use Domain\ValueObjects\PersonId;
+
+//Exceptions
+use Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
 
 class TimeSheet
 {
@@ -16,7 +19,8 @@ class TimeSheet
      */
     public function __construct(
         private readonly array $timeEntries,
-        private readonly PersonId $person
+        private readonly PersonId $person,
+        private readonly Config $config
     ){
         $this->checkTimeEntries();
     }
@@ -24,10 +28,14 @@ class TimeSheet
     /**
      * @throws InvalidTimeEntriesException
      */
-    public static function create(array $timeEntries, PersonId $person): self
+    public static function create(
+        array $timeEntries,
+        PersonId $person,
+        Config $config
+    ): self
     {
         return new self(
-            timeEntries: $timeEntries, person: $person
+            timeEntries: $timeEntries, person: $person, config: $config
         );
     }
 
@@ -39,6 +47,26 @@ class TimeSheet
     public function timeEntries(): array
     {
         return $this->timeEntries;
+    }
+
+    public function config(): Config
+    {
+        return $this->config;
+    }
+
+    public function toArray(): array
+    {
+        $timeEntries = [];
+
+        foreach ($this->timeEntries as $timeEntry){
+            $timeEntries[] = $timeEntry->toArray();
+        }
+
+        return [
+            'person' => $this->person->toArray(),
+            'config' => $this->config->toArray(),
+            'timeEntries' => $timeEntries
+        ];
     }
 
     /**

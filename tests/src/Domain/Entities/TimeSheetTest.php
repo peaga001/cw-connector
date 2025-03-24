@@ -2,9 +2,16 @@
 
 namespace Tests\src\Domain\Entities;
 
-use Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
+//Entities
 use Domain\Entities\TimeSheet;
+
+//ErrorCodes
 use Domain\ErrorCodes\DomainErrorCodes;
+
+//Exceptions
+use Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
+
+//TestingTools
 use Tests\Support\CwTestCase;
 
 class TimeSheetTest extends CwTestCase
@@ -16,7 +23,8 @@ class TimeSheetTest extends CwTestCase
     {
         $timeSheet = new TimeSheet(
             timeEntries: $this->timeEntries(),
-            person: $this->personId()
+            person: $this->personId(),
+            config: $this->config()
         );
 
         $this->assertInstanceOf(TimeSheet::class, $timeSheet);
@@ -29,7 +37,8 @@ class TimeSheetTest extends CwTestCase
     {
         $timeSheet = TimeSheet::create(
             timeEntries: $this->timeEntries(),
-            person: $this->personId()
+            person: $this->personId(),
+            config: $this->config()
         );
 
         $this->assertInstanceOf(TimeSheet::class, $timeSheet);
@@ -50,7 +59,8 @@ class TimeSheetTest extends CwTestCase
 
         TimeSheet::create(
             timeEntries: $timeEntries,
-            person: $this->personId()
+            person: $this->personId(),
+            config: $this->config()
         );
     }
 
@@ -63,7 +73,8 @@ class TimeSheetTest extends CwTestCase
 
         $timeSheet = TimeSheet::create(
             timeEntries: $timeEntries,
-            person: $this->personId()
+            person: $this->personId(),
+            config: $this->config()
         );
 
         $this->assertEquals($timeEntries, $timeSheet->timeEntries());
@@ -78,9 +89,25 @@ class TimeSheetTest extends CwTestCase
 
         $timeSheet = TimeSheet::create(
             timeEntries: $this->timeEntries(),
-            person: $personId
+            person: $personId,
+            config: $this->config()
         );
 
         $this->assertEquals($personId, $timeSheet->person());
+    }
+
+    /**
+     * @throws InvalidTimeEntriesException
+     */
+    public function test_ShouldReturnTheValuesCorrectlyWhenCallingToArray(): void
+    {
+        $timeSheet = TimeSheet::create(
+            timeEntries: $this->timeEntries(quantity: 1),
+            person: $this->personId(),
+            config: $this->config()
+        );
+
+        $this->assertEquals($timeSheet->person()->toArray(), $timeSheet->toArray()['person']);
+        $this->assertEquals($timeSheet->timeEntries()[0]->toArray(), $timeSheet->toArray()['timeEntries'][0]);
     }
 }
