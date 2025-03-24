@@ -2,10 +2,19 @@
 
 namespace Tests\src\Domain\Entities;
 
+//Entities
 use Domain\Entities\Batch;
+
+//Enums
 use Domain\Enums\BatchStatus;
+
+//ErrorCodes
 use Domain\ErrorCodes\DomainErrorCodes;
+
+//Exceptions
 use Domain\Exceptions\TimeSheet\InvalidTimeSheetsException;
+
+//TestingTools
 use Tests\Support\CwTestCase;
 
 class BatchTest extends CwTestCase
@@ -108,7 +117,7 @@ class BatchTest extends CwTestCase
     /**
      * @throws InvalidTimeSheetsException
      */
-    public function test_ShouldReturnBatchStatusDefinedAfterInsertingBatchStatus()
+    public function test_ShouldReturnBatchStatusDefinedAfterInsertingBatchStatus(): void
     {
         $batchStatus = BatchStatus::FAILED;
         $batch = Batch::create(
@@ -120,4 +129,22 @@ class BatchTest extends CwTestCase
         $batch->setStatus($batchStatus);
         $this->assertEquals($batchStatus, $batch->status());
     }
+
+    /**
+     * @throws InvalidTimeSheetsException
+     */
+    public function test_ShouldReturnTheValuesCorrectlyWhenCallingToArray(): void
+    {
+        $batch = Batch::create(
+            timeSheets: $this->timeSheets(quantity: 1)
+        );
+
+        $batchInArray = $batch->toArray();
+
+        $this->assertEquals($batch->status(), BatchStatus::tryFrom($batchInArray['status']['value']));
+        $this->assertEquals($batch->result()->toArray(), $batchInArray['result']);
+        $this->assertEquals($batch->timeSheets()[0]->toArray(), $batchInArray['timeSheets'][0]);
+        $this->assertNull($batchInArray['batchId']);
+    }
+
 }

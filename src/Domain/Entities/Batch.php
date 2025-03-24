@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Domain\Entities;
 
-use Domain\ValueObjects\BatchResult\BatchResult;
+//ValueObjects
+use Domain\ValueObjects\BatchResult;
+
+//Enums
 use Domain\Enums\BatchStatus;
+
+//Exceptions
 use Domain\Exceptions\TimeSheet\InvalidTimeSheetsException;
 
 class Batch
@@ -84,6 +89,25 @@ class Batch
     public function result(): ?BatchResult
     {
         return $this->batchResult;
+    }
+
+    public function toArray(): array
+    {
+        $timeSheets = [];
+
+        foreach ($this->timeSheets as $timeSheet){
+            $timeSheets[] = $timeSheet->toArray();
+        }
+
+        return [
+            'status' => [
+                'name' => $this->batchStatus->name,
+                'value' => $this->batchStatus->value
+            ],
+            'result' => $this->batchResult->toArray(),
+            'timeSheets' => $timeSheets,
+            'batchId' => $this->batchId
+        ];
     }
 
     /**

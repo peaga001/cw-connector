@@ -2,14 +2,23 @@
 
 namespace Tests\Support;
 
-use DateTime;
-use Domain\Entities\Batch;
+//Entities
 use Domain\Entities\TimeSheet;
-use Domain\Enums\DocumentTypes;
-use Domain\ValueObjects\BatchResult\BatchResult;
+use Domain\Entities\Config;
+use Domain\Entities\Batch;
+
+//ValueObjects
+use Domain\ValueObjects\BatchResult;
+use Domain\ValueObjects\Property;
 use Domain\ValueObjects\PersonId;
 use Domain\ValueObjects\TimeEntry;
+
+//Enums
+use Domain\Enums\DocumentTypes;
+
+//TestingTools
 use Faker\Generator;
+use DateTime;
 use Mockery;
 
 trait CwGenerator
@@ -30,21 +39,25 @@ trait CwGenerator
         $timeEntries = [];
 
         for ($index = 0; $index < $quantity; $index++) {
-            $timeEntries[] = Mockery::mock(TimeEntry::class, [$this->date(), $this->hours()]);
+            $timeEntries[] = Mockery::mock(TimeEntry::class, [$this->date(), $this->hours()])
+                ->makePartial();
         }
 
         return $timeEntries;
     }
 
-    public function timeSheets(int $quantity = 30, $entriesPerTimeSheet = 4): array
+    public function timeSheets(
+        int $quantity = 30, $entriesPerTimeSheet = 4
+    ): array
     {
         $timeSheets = [];
 
         for ($index = 0; $index < $quantity; $index++) {
             $timeSheets[] = Mockery::mock(TimeSheet::class, [
                 $this->timeEntries($entriesPerTimeSheet),
-                $this->personId()
-            ]);
+                $this->personId(),
+                $this->config()
+            ])->makePartial();
         }
 
         return $timeSheets;
@@ -52,7 +65,8 @@ trait CwGenerator
 
     public function personId(): PersonId
     {
-        return Mockery::mock(PersonId::class, [$this->documentType(), $this->documentNumber()]);
+        return Mockery::mock(PersonId::class, [$this->documentType(), $this->documentNumber()])
+            ->makePartial();
     }
 
     public function date(): DateTime
@@ -69,12 +83,8 @@ trait CwGenerator
 
     public function batch($withId = false, $withResult = false): Batch
     {
-        $batch = Mockery::mock(Batch::class, [$this->timeSheets()]);
-        $makePartial = $withId || $withResult;
-
-        if($makePartial){
-            $batch->makePartial();
-        }
+        $batch = Mockery::mock(Batch::class, [$this->timeSheets()])
+            ->makePartial();
 
         if($withId){
             $batch->setBatchId($this->batchId());
@@ -95,6 +105,30 @@ trait CwGenerator
 
     public function batchResult(): BatchResult
     {
-        return Mockery::mock(BatchResult::class, [[]]);
+        return Mockery::mock(BatchResult::class, [['success' => true, 'message' => 'Success']])
+            ->makePartial();
+    }
+
+    public function config(int $quantity = 10): Config
+    {
+        $configs = [];
+
+        for ($index = 0; $index < $quantity; $index++) {
+            $configs[] = $this->property();
+        }
+
+        return Mockery::mock(Config::class, [$configs])->makePartial();
+    }
+
+    public function property(): Property
+    {
+        $key = $this->faker->randomAscii();
+        $value = $this->faker->randomElement([
+            $this->faker->boolean(),
+            $this->faker->randomNumber(2),
+            $this->faker->randomAscii()
+        ]);
+
+        return Mockery::mock(Property::class, [$key, $value])->makePartial();
     }
 }
