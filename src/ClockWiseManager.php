@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace CwConnector\App;
+namespace CwConnector;
 
 //Ports
 use CwConnector\Application\Ports\ITranslator;
+use CwConnector\Domain\Ports\IRepository;
 
 //UseCases
 use CwConnector\Application\UseCases\GetBatchResultUseCase;
@@ -16,11 +17,11 @@ use CwConnector\Application\UseCases\SendBatchUseCase;
 //Entities
 use CwConnector\Domain\Entities\Batch;
 
-//Ports
-use CwConnector\Domain\Ports\IRepository;
-
 //Exceptions
-use Exception;
+use CwConnector\Domain\Exceptions\Batch\BatchNotFoundException;
+use CwConnector\Domain\Exceptions\Batch\BatchSendFailedException;
+use CwConnector\Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
+use CwConnector\Domain\Exceptions\Batch\UnfinishedBatchException;
 
 class ClockWiseManager
 {
@@ -41,45 +42,38 @@ class ClockWiseManager
         $this->translator                   = $translator;
     }
 
+    /**
+     * @throws UnfinishedBatchException
+     * @throws BatchNotFoundException
+     */
     public function getResults(string $batchId): array
     {
-        try {
-            $batchResult = $this->getBatchResultUseCase->execute($batchId);
-            return $this->translator->translate($batchResult->toArray());
-        }catch (Exception $exception) {
-            var_dump($exception);
-            die();
-        }
+        $batchResult = $this->getBatchResultUseCase->execute($batchId);
+        return $this->translator->translate($batchResult->toArray());
     }
 
+    /**
+     * @throws BatchNotFoundException
+     */
     public function getCurrentStatus(string $batchId): int
     {
-        try {
-            return $this->getCurrentBatchStatusUseCase->execute($batchId);
-        }catch (Exception $exception) {
-            var_dump($exception);
-            die();
-        }
+        return $this->getCurrentBatchStatusUseCase->execute($batchId);
     }
 
-    public function send(Batch $batch)
+    /**
+     * @throws BatchSendFailedException
+     */
+    public function send(Batch $batch): array
     {
-        try {
-            $batchResult = $this->sendBatchUseCase->execute($batch);
-            return $this->translator->translate($batchResult->toArray());
-        }catch (Exception $exception) {
-            var_dump($exception->getMessage());
-            die();
-        }
+        $batchResult = $this->sendBatchUseCase->execute($batch);
+        return $this->translator->translate($batchResult->toArray());
     }
 
+    /**
+     * @throws BatchSendInBackgroundFailedException
+     */
     public function sendInBackground(Batch $batch): string
     {
-        try {
-            return $this->sendBatchInBackgroundUseCase->execute($batch);
-        }catch (Exception $exception) {
-            var_dump($exception);
-            die();
-        }
+        return $this->sendBatchInBackgroundUseCase->execute($batch);
     }
 }

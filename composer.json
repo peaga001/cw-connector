@@ -12,7 +12,7 @@
             "CwConnector/Domain\\": "src/Domain",
             "CwConnector/Application\\": "src/Application",
             "CwConnector/Infrastructure\\": "src/Infrastructure",
-            "CwConnector/App\\": "src/"
+            "CwConnector\\": "src/"
         }
     },
     "authors": [
