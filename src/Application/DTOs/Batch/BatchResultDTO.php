@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Application\DTOs\Batch;
+namespace Application\DTOs\Batch;
 
-use Domain\ValueObjects\BatchResult\BatchResult;
+//ValueObjects
+use Domain\ValueObjects\BatchResult;
 
 class BatchResultDTO
 {
@@ -22,7 +23,7 @@ class BatchResultDTO
     public function toEntity(): BatchResult
     {
         return BatchResult::create(
-            results: $this->result
+            result: $this->result
         );
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Data\FromAPI\Config;
+namespace Infrastructure\Data\HTTP\Config;
 
 class APIConfig
 {

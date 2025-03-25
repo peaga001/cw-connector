@@ -2,15 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Data\FromAPI\Clients;
+namespace Infrastructure\Data\HTTP\Clients;
 
-use App\Infrastructure\Data\FromAPI\Config\APIConfig;
-use App\Infrastructure\Data\FromAPI\Config\IClient;
-use App\Infrastructure\Data\FromAPI\Config\Routes;
+//HTTPConfigs
+use Infrastructure\Data\HTTP\Config\APIConfig;
+use Infrastructure\Data\HTTP\Config\Routes;
+
+//Exceptions
+use Infrastructure\Data\HTTP\Exceptions\UnauthorizedException;
+
+//GuzzleTools
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Client;
-use Exception;
+
 
 class Guzzle implements IClient
 {
@@ -33,14 +38,15 @@ class Guzzle implements IClient
         return new self($config);
     }
 
+
     /**
-     * @throws Exception
+     * @throws UnauthorizedException
      * @throws GuzzleException
      */
     public function authenticate(): self
     {
         $response = $this->client->post(uri: Routes::AUTHENTICATE, options: [
-            'body' => [
+            'form_params' => [
                 'api_key' => $this->apiKey
             ]
         ]);
@@ -48,7 +54,7 @@ class Guzzle implements IClient
         $bodyContent = $this->bodyContent($response);
 
         if(!isset($bodyContent['token'])){
-            throw new Exception('Token not found');
+            throw new UnauthorizedException;
         }
 
         $this->token = $bodyContent['token'];
@@ -58,6 +64,7 @@ class Guzzle implements IClient
 
     /**
      * @throws GuzzleException
+     * @throws UnauthorizedException
      */
     public function token(): ?string
     {
@@ -70,6 +77,7 @@ class Guzzle implements IClient
 
     /**
      * @throws GuzzleException
+     * @throws UnauthorizedException
      */
     public function get(string $uri, array $queryParams = []): array
     {
@@ -83,12 +91,13 @@ class Guzzle implements IClient
 
     /**
      * @throws GuzzleException
+     * @throws UnauthorizedException
      */
     public function post(string $uri, array $body = []): array
     {
         $response = $this->client->post(uri: $uri, options: [
             'headers' => $this->headers(),
-            'body' => $body
+            'form_params' => $body
         ]);
 
         return $this->bodyContent($response);
@@ -96,38 +105,13 @@ class Guzzle implements IClient
 
     /**
      * @throws GuzzleException
-     */
-    public function put(string $uri, array $body): array
-    {
-        $response = $this->client->put(uri: $uri, options: [
-            'headers' => $this->headers(),
-            'body' => $body
-        ]);
-
-        return $this->bodyContent($response);
-    }
-
-    /**
-     * @throws GuzzleException
-     */
-    public function delete(string $uri, array $body): array
-    {
-        $response = $this->client->delete(uri: $uri, options: [
-            'headers' => $this->headers(),
-            'body' => $body
-        ]);
-
-        return $this->bodyContent($response);
-    }
-
-    /**
-     * @throws GuzzleException
+     * @throws UnauthorizedException
      */
     private function headers(): array
     {
         return [
             'Authorization' => 'Bearer ' . $this->token(),
-            'Content-Type' => 'application/json'
+            'Content-Type' => 'application/x-www-form-urlencoded'
         ];
     }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Exceptions\TimeSheet;
 
-use App\Domain\Exceptions\DomainException;
+use Domain\Exceptions\DomainException;
 use Domain\ErrorCodes\DomainErrorCodes;
 
 class InvalidTimeSheetsException extends DomainException

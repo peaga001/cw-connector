@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Infrastructure\Data\FromAPI\Config;
+declare(strict_types=1);
+
+namespace Infrastructure\Data\HTTP\Config;
 
 class Routes
 {

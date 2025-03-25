@@ -1,8 +1,13 @@
 <?php
 
-namespace App\Application\DTOs\TimeEntry;
+declare(strict_types=1);
 
-use App\Domain\Exceptions\DomainException;
+namespace Application\DTOs\TimeEntry;
+
+//Exceptions
+use Domain\Exceptions\DomainException;
+
+//ValueObjects
 use Domain\ValueObjects\TimeEntry;
 
 class TimeEntryDTO

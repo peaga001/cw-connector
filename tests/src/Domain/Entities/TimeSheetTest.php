@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\src\Domain\Entities;
 
 //Entities
@@ -109,5 +111,6 @@ class TimeSheetTest extends CwTestCase
 
         $this->assertEquals($timeSheet->person()->toArray(), $timeSheet->toArray()['person']);
         $this->assertEquals($timeSheet->timeEntries()[0]->toArray(), $timeSheet->toArray()['timeEntries'][0]);
+        $this->assertEquals($timeSheet->config()->toArray(), $timeSheet->toArray()['config']);
     }
 }

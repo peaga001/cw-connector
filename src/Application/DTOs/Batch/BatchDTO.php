@@ -1,9 +1,16 @@
 <?php
 
-namespace App\Application\DTOs\Batch;
+declare(strict_types=1);
 
-use App\Application\DTOs\TimeSheet\TimeSheetDTO;
-use App\Domain\Exceptions\DomainException;
+namespace Application\DTOs\Batch;
+
+//DTOs
+use Application\DTOs\TimeSheet\TimeSheetDTO;
+
+//Exceptions
+use Domain\Exceptions\DomainException;
+
+//Entities
 use Domain\Entities\Batch;
 
 class BatchDTO
@@ -22,13 +29,15 @@ class BatchDTO
     {
         $timeSheets = [];
 
-        foreach ($data['timeSheets'] as $timeSheet) {
+        foreach ($data['time_sheets'] as $timeSheet) {
             $timeSheets[] = TimeSheetDTO::fromArray($timeSheet)->toEntity();
         }
 
         return new self(
             timeSheets: $timeSheets,
-            batchResult: BatchResultDTO::fromArray($data['batchResult']),
+            batchResult: BatchResultDTO::fromArray($data['result']),
+            batchId: $data['batch_id'] ?? '',
+            status: $data['status']
         );
     }
 

@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Domain\Exceptions;
+declare(strict_types=1);
 
+namespace Domain\Exceptions;
+
+//Exceptions
 use Exception;
 
 class DomainException extends Exception

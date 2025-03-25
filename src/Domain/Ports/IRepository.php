@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Ports;
 
+//Entities
 use Domain\Entities\Batch;
 
 interface IRepository

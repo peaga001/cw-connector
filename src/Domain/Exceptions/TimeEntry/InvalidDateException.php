@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Exceptions\TimeEntry;
 
-use App\Domain\Exceptions\DomainException;
+//Exceptions
+use Domain\Exceptions\DomainException;
+
+//ErrorCodes
 use Domain\ErrorCodes\DomainErrorCodes;
 
 class InvalidDateException extends DomainException

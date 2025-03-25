@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Data\FromAPI\Config;
+namespace Infrastructure\Data\HTTP\Clients;
+
+//HTTPConfigs
+use Infrastructure\Data\HTTP\Config\APIConfig;
 
 interface IClient
 {
@@ -11,6 +14,4 @@ interface IClient
     public function token(): ?string;
     public function get(string $uri, array $queryParams = []): array;
     public function post(string $uri, array $body = []): array;
-    public function put(string $uri, array $body): array;
-    public function delete(string $uri, array $body): array;
 }

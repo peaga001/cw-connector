@@ -122,11 +122,11 @@ trait CwGenerator
 
     public function property(): Property
     {
-        $key = $this->faker->randomAscii();
+        $key = $this->faker->word();
         $value = $this->faker->randomElement([
             $this->faker->boolean(),
-            $this->faker->randomNumber(2),
-            $this->faker->randomAscii()
+            $this->faker->randomNumber(nbDigits: 2),
+            $this->faker->word()
         ]);
 
         return Mockery::mock(Property::class, [$key, $value])->makePartial();

@@ -2,13 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Data\FromAPI;
+namespace Infrastructure\Data\HTTP;
 
-use App\Application\DTOs\Batch\BatchDTO;
-use App\Domain\Exceptions\DomainException;
-use App\Infrastructure\Data\FromAPI\Config\IClient;
-use App\Infrastructure\Data\FromAPI\Config\Routes;
+//DTOs
+use Application\DTOs\Batch\BatchDTO;
+
+//Exceptions
+use Domain\Exceptions\DomainException;
+
+//HTTPConfigs
+use Infrastructure\Data\HTTP\Clients\IClient;
+use Infrastructure\Data\HTTP\Config\Routes;
+
+//Entities
 use Domain\Entities\Batch;
+
+//Ports
 use Domain\Ports\IRepository;
 
 class HTTPRepository implements IRepository
@@ -48,9 +57,7 @@ class HTTPRepository implements IRepository
     {
         $result = $this->client->post(
             uri: Routes::SEND,
-            body: [
-                'timeSheets' => $batch->timeSheets()
-            ]
+            body: $batch->toArray()
         );
 
         return BatchDTO::fromArray($result)->toEntity();
