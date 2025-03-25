@@ -10,6 +10,9 @@ use CwConnector\Domain\Exceptions\DomainException;
 //ErrorCodes
 use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
+/**
+ * Exception thrown when a batch sending operation fails.
+ */
 class BatchSendFailedException extends DomainException
 {
     public function __construct()

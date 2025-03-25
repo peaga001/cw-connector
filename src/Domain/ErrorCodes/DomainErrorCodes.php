@@ -4,6 +4,15 @@ declare(strict_types=1);
 
 namespace CwConnector\Domain\ErrorCodes;
 
+/**
+ * This class defines error codes specific to domain-related exceptions and validations.
+ *
+ * The constants included in this class provide standardized error codes for various errors that
+ * might occur while performing operations related to entities such as a person, time entry,
+ * time sheet, and batch processing in the domain.
+ *
+ * These error codes can be used to identify and handle specific errors in the application.
+ */
 class DomainErrorCodes
 {
     public const int PERSON_ID_INVALID_DOCUMENT_TYPE = 100;

@@ -7,6 +7,9 @@ namespace CwConnector\Infrastructure\Data\HTTP\Clients;
 //HTTPConfigs
 use CwConnector\Infrastructure\Data\HTTP\Config\APIConfig;
 
+/**
+ * Interface representing a client for interacting with an API.
+ */
 interface IClient
 {
     public static function create(APIConfig $config): self;

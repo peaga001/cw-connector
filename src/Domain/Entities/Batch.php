@@ -13,6 +13,13 @@ use CwConnector\Domain\Enums\BatchStatus;
 //Exceptions
 use CwConnector\Domain\Exceptions\TimeSheet\InvalidTimeSheetsException;
 
+/**
+ * Class Batch
+ *
+ * Represents a batch containing timesheets, a batch ID, status, and result. Provides functionality
+ * to create, modify, and retrieve details about the batch and its associated timesheets. Enforces
+ * validation of timesheets to ensure only valid objects are processed as part of the batch.
+ */
 class Batch
 {
     private BatchStatus $batchStatus;
@@ -21,7 +28,10 @@ class Batch
     private ?string $batchId;
 
     /**
-     * @param $timeSheets TimeSheet[]
+     * @param TimeSheet[] $timeSheets
+     * @param ?string $batchId
+     * @param ?BatchStatus $batchStatus
+     * @param ?BatchResult $batchResult
      * @throws InvalidTimeSheetsException
      */
     public function __construct(
@@ -39,6 +49,11 @@ class Batch
     }
 
     /**
+     * @param TimeSheet[] $timeSheets
+     * @param int $batchStatus
+     * @param ?BatchResult $batchResult
+     * @param ?string $batchId
+     * @return self
      * @throws InvalidTimeSheetsException
      */
     public static function create(
@@ -56,41 +71,68 @@ class Batch
         );
     }
 
+    /**
+     * @return TimeSheet[]
+     */
     public function timeSheets(): array
     {
         return $this->timeSheets;
     }
 
+    /**
+     * @return ?string
+     */
     public function batchId(): ?string
     {
         return $this->batchId;
     }
 
+    /**
+     * @param string $batchId
+     * @return void
+     */
     public function setBatchId(string $batchId): void
     {
         $this->batchId = $batchId;
     }
 
+    /**
+     * @param BatchStatus $status
+     * @return void
+     */
     public function setStatus(BatchStatus $status): void
     {
         $this->batchStatus = $status;
     }
 
+    /**
+     * @param BatchResult $result
+     * @return void
+     */
     public function setResult(BatchResult $result): void
     {
         $this->batchResult = $result;
     }
 
+    /**
+     * @return BatchStatus
+     */
     public function status(): BatchStatus
     {
         return $this->batchStatus;
     }
 
+    /**
+     * @return ?BatchResult
+     */
     public function result(): ?BatchResult
     {
         return $this->batchResult;
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         $timeSheets = [];
@@ -111,6 +153,7 @@ class Batch
     }
 
     /**
+     * @return void
      * @throws InvalidTimeSheetsException
      */
     private function checkTimeSheets(): void

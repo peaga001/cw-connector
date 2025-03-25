@@ -10,6 +10,12 @@ use CwConnector\Domain\Enums\DocumentTypes;
 //Exceptions
 use CwConnector\Domain\Exceptions\PersonId\InvalidDocumentTypeException;
 
+/**
+ * Encapsulates the identification of a person using a document type and document number.
+ *
+ * Provides functionality to create a person identifier, compare it with another identifier,
+ * retrieve its components, and convert it to an array representation.
+ */
 class PersonId
 {
     public function __construct(

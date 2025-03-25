@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace CwConnector\Domain\Enums;
 
+/**
+ * Represents the status of a batch process with predefined states.
+ */
 enum BatchStatus: int
 {
     case CREATED = 1;

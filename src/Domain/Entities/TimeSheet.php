@@ -11,10 +11,16 @@ use CwConnector\Domain\ValueObjects\PersonId;
 //Exceptions
 use CwConnector\Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
 
+/**
+ * Represents a time sheet which handles a collection of time entries,
+ * associated with a specific person and configuration.
+ */
 class TimeSheet
 {
     /**
-     * @param TimeEntry[] $timeEntries
+     * @param TimeSheet[] $timeEntries
+     * @param PersonId $person
+     * @param Config $config
      * @throws InvalidTimeEntriesException
      */
     public function __construct(
@@ -26,6 +32,10 @@ class TimeSheet
     }
 
     /**
+     * @param TimeSheet[] $timeEntries
+     * @param PersonId $person
+     * @param Config $config
+     * @return self
      * @throws InvalidTimeEntriesException
      */
     public static function create(
@@ -39,21 +49,33 @@ class TimeSheet
         );
     }
 
+    /**
+     * @return PersonId
+     */
     public function person(): PersonId
     {
         return $this->person;
     }
 
+    /**
+     * @return TimeSheet[]
+     */
     public function timeEntries(): array
     {
         return $this->timeEntries;
     }
 
+    /**
+     * @return Config
+     */
     public function config(): Config
     {
         return $this->config;
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         $timeEntries = [];
@@ -70,6 +92,7 @@ class TimeSheet
     }
 
     /**
+     * @return void
      * @throws InvalidTimeEntriesException
      */
     private function checkTimeEntries(): void

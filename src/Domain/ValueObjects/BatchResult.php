@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace CwConnector\Domain\ValueObjects;
 
+/**
+ * Represents the result of a batch operation, encapsulating an array of results.
+ */
 class BatchResult
 {
     public function __construct(

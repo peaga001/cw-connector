@@ -4,6 +4,13 @@ declare(strict_types=1);
 
 namespace CwConnector\Domain\ValueObjects;
 
+/**
+ * Represents a property with a key-value pair.
+ *
+ * This class encapsulates a key and its corresponding value and provides
+ * methods to interact with them, such as retrieving the key, value, or
+ * converting the property to an associative array.
+ */
 class Property
 {
     public function __construct(

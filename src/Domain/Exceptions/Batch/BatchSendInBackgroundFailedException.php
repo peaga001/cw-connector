@@ -10,6 +10,12 @@ use CwConnector\Domain\Exceptions\DomainException;
 //ErrorCodes
 use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
+/**
+ * Exception thrown when a batch process fails to send in the background.
+ *
+ * This exception indicates that an attempt to send a batch operation in the background did not succeed.
+ * It extends the DomainException class to provide specific context and an error code for this failure scenario.
+ */
 class BatchSendInBackgroundFailedException extends DomainException
 {
     public function __construct()

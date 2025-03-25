@@ -16,7 +16,10 @@ use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Client;
 
-
+/**
+ * Class Guzzle
+ * Implements IClient interface to handle HTTP requests using the Guzzle library.
+ */
 class Guzzle implements IClient
 {
     public Client $client;

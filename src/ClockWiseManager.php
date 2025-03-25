@@ -23,6 +23,13 @@ use CwConnector\Domain\Exceptions\Batch\BatchSendFailedException;
 use CwConnector\Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
 use CwConnector\Domain\Exceptions\Batch\UnfinishedBatchException;
 
+/**
+ * Class ClockWiseManager
+ *
+ * A class responsible for managing the processing of batches, including retrieving results,
+ * checking current statuses, and sending batches for immediate or background processing.
+ * This class provides an interface to efficiently handle batch-related operations.
+ */
 class ClockWiseManager
 {
     private readonly GetBatchResultUseCase $getBatchResultUseCase;
@@ -43,8 +50,12 @@ class ClockWiseManager
     }
 
     /**
-     * @throws UnfinishedBatchException
+     * Get the return of the processed batch
+     * @
+     * @param string $batchId
+     * @return array
      * @throws BatchNotFoundException
+     * @throws UnfinishedBatchException
      */
     public function getResults(string $batchId): array
     {
@@ -53,6 +64,9 @@ class ClockWiseManager
     }
 
     /**
+     * Returns the current batch status
+     * @param string $batchId
+     * @return int
      * @throws BatchNotFoundException
      */
     public function getCurrentStatus(string $batchId): int
@@ -61,6 +75,9 @@ class ClockWiseManager
     }
 
     /**
+     * Submit a batch for immediate processing
+     * @param Batch $batch
+     * @return array
      * @throws BatchSendFailedException
      */
     public function send(Batch $batch): array
@@ -70,6 +87,9 @@ class ClockWiseManager
     }
 
     /**
+     * Submit a batch for queue processing
+     * @param Batch $batch
+     * @return string
      * @throws BatchSendInBackgroundFailedException
      */
     public function sendInBackground(Batch $batch): string

@@ -11,6 +11,11 @@ use CwConnector\Domain\Exceptions\TimeEntry\InvalidHoursException;
 //TestingTools
 use DateTime;
 
+/**
+ * Represents a time entry with a specific date and hours.
+ *
+ * Provides methods to create, compare, and retrieve time entry data.
+ */
 class TimeEntry
 {
     public function __construct(

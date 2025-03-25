@@ -20,6 +20,15 @@ use CwConnector\Domain\Entities\Batch;
 //Ports
 use CwConnector\Domain\Ports\IRepository;
 
+/**
+ * Class HTTPRepository
+ *
+ * A repository implementation for handling HTTP operations related to Batch entities.
+ * This class interacts with an HTTP client to perform CRUD operations by utilizing a set of predefined routes.
+ * It supports operations such as fetching a batch by ID, retrieving batch results, and sending batches.
+ *
+ * @implements IRepository
+ */
 class HTTPRepository implements IRepository
 {
     public function __construct(

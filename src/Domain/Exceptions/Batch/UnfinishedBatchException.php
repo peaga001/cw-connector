@@ -10,6 +10,10 @@ use CwConnector\Domain\Exceptions\DomainException;
 //ErrorCodes
 use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
+/**
+ * Exception thrown when an operation is attempted on a batch
+ * that has not yet been completed.
+ */
 class UnfinishedBatchException extends DomainException
 {
     public function __construct()

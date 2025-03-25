@@ -7,6 +7,9 @@ namespace CwConnector\Domain\Exceptions\TimeSheet;
 use CwConnector\Domain\Exceptions\DomainException;
 use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
+/**
+ * Exception thrown when the provided time sheets are determined to be invalid.
+ */
 class InvalidTimeSheetsException extends DomainException
 {
     public function __construct()

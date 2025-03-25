@@ -10,6 +10,11 @@ use CwConnector\Domain\Exceptions\DomainException;
 //ErrorCodes
 use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
+/**
+ * Exception thrown when a specific batch is not found in the system.
+ * This exception is a specialization of DomainException and is used
+ * to signal an error condition related to missing batches.
+ */
 class BatchNotFoundException extends DomainException
 {
     public function __construct()

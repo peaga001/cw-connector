@@ -7,6 +7,12 @@ namespace CwConnector\Domain\Ports;
 //Entities
 use CwConnector\Domain\Entities\Batch;
 
+/**
+ * Interface IRepository
+ *
+ * Contract for the repository handling Batch operations.
+ * Provides methods to retrieve, process, and send batches.
+ */
 interface IRepository
 {
     public function getById(string $id): ?Batch;
