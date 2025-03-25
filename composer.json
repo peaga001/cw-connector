@@ -8,11 +8,11 @@
             "src/"
         ],
         "psr-4": {
-            "Tests\\": "tests/",
-            "Domain\\": "src/Domain",
-            "Application\\": "src/Application",
-            "Infrastructure\\": "src/Infrastructure",
-            "App\\": "src/"
+            "CwConnector/Tests\\": "tests/",
+            "CwConnector/Domain\\": "src/Domain",
+            "CwConnector/Application\\": "src/Application",
+            "CwConnector/Infrastructure\\": "src/Infrastructure",
+            "CwConnector/App\\": "src/"
         }
     },
     "authors": [

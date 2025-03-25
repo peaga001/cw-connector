@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Application\UseCases;
+namespace CwConnector\Application\UseCases;
 
 //Exceptions
-use Domain\Exceptions\Batch\BatchNotFoundException;
+use CwConnector\Domain\Exceptions\Batch\BatchNotFoundException;
 
 //Ports
-use Domain\Ports\IRepository;
+use CwConnector\Domain\Ports\IRepository;
 
 class GetCurrentBatchStatusUseCase
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Support;
+namespace CwConnector\Tests\Support;
 
 use Faker\Factory;
 use Faker\Generator;

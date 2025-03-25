@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Tests\src\Infrastructure\Data\FromAPI;
+namespace CwConnector\Tests\src\Infrastructure\Data\FromAPI;
 
 //Exceptions
-use Domain\Exceptions\DomainException;
+use CwConnector\Domain\Exceptions\DomainException;
 
 //HTTPConfigs
-use Infrastructure\Data\HTTP\Clients\Guzzle;
-use Infrastructure\Data\HTTP\Clients\IClient;
-use Infrastructure\Data\HTTP\Config\APIConfig;
+use CwConnector\Infrastructure\Data\HTTP\Clients\Guzzle;
+use CwConnector\Infrastructure\Data\HTTP\Clients\IClient;
+use CwConnector\Infrastructure\Data\HTTP\Config\APIConfig;
 
 //HTTPExceptions
-use Infrastructure\Data\HTTP\Exceptions\HTTPErrorCodes;
-use Infrastructure\Data\HTTP\Exceptions\UnauthorizedException;
+use CwConnector\Infrastructure\Data\HTTP\Exceptions\HTTPErrorCodes;
+use CwConnector\Infrastructure\Data\HTTP\Exceptions\UnauthorizedException;
 
 //HTTPRepository
-use Infrastructure\Data\HTTP\HTTPRepository;
+use CwConnector\Infrastructure\Data\HTTP\HTTPRepository;
 
 //Entities
-use Domain\Entities\Batch;
+use CwConnector\Domain\Entities\Batch;
 
 //GuzzleTools
 use GuzzleHttp\Handler\MockHandler;
@@ -30,8 +30,8 @@ use GuzzleHttp\Client;
 
 //TestingTools
 use PHPUnit\Framework\Attributes\DataProviderExternal;
-use Tests\Support\Providers\HTTPRepositoryProvider;
-use Tests\Support\CwTestCase;
+use CwConnector\Tests\Support\Providers\HTTPRepositoryProvider;
+use CwConnector\Tests\Support\CwTestCase;
 
 class HTTPRepositoryWithGuzzleTest
     extends CwTestCase

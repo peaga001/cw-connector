@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Application\UseCases;
+namespace CwConnector\Application\UseCases;
 
 //Entities
-use Domain\Entities\Batch;
+use CwConnector\Domain\Entities\Batch;
 
 //Exceptions
-use Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
+use CwConnector\Domain\Exceptions\Batch\BatchSendInBackgroundFailedException;
 
 //Ports
-use Domain\Ports\IRepository;
+use CwConnector\Domain\Ports\IRepository;
 
 class SendBatchInBackgroundUseCase
 {

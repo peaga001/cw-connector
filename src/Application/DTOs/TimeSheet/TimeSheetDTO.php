@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Application\DTOs\TimeSheet;
+namespace CwConnector\Application\DTOs\TimeSheet;
 
 //DTOs
-use Application\DTOs\TimeEntry\TimeEntryDTO;
+use CwConnector\Application\DTOs\TimeEntry\TimeEntryDTO;
 
 //Entities
-use Domain\Entities\TimeSheet;
-use Domain\Entities\Config;
+use CwConnector\Domain\Entities\TimeSheet;
+use CwConnector\Domain\Entities\Config;
 
 //Exceptions
-use Domain\Exceptions\DomainException;
+use CwConnector\Domain\Exceptions\DomainException;
 
 //ValueObjects
-use Domain\ValueObjects\PersonId;
+use CwConnector\Domain\ValueObjects\PersonId;
 
 class TimeSheetDTO
 {

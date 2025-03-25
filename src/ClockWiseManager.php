@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace CwConnector\App;
 
 //Ports
-use Application\Ports\ITranslator;
+use CwConnector\Application\Ports\ITranslator;
 
 //UseCases
-use Application\UseCases\GetBatchResultUseCase;
-use Application\UseCases\GetCurrentBatchStatusUseCase;
-use Application\UseCases\SendBatchInBackgroundUseCase;
-use Application\UseCases\SendBatchUseCase;
+use CwConnector\Application\UseCases\GetBatchResultUseCase;
+use CwConnector\Application\UseCases\GetCurrentBatchStatusUseCase;
+use CwConnector\Application\UseCases\SendBatchInBackgroundUseCase;
+use CwConnector\Application\UseCases\SendBatchUseCase;
 
 //Entities
-use Domain\Entities\Batch;
+use CwConnector\Domain\Entities\Batch;
 
 //Ports
-use Domain\Ports\IRepository;
+use CwConnector\Domain\Ports\IRepository;
 
 //Exceptions
 use Exception;

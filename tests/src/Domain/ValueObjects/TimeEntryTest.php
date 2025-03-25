@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Tests\src\Domain\ValueObjects;
+namespace CwConnector\Tests\src\Domain\ValueObjects;
 
 //ValueObjects
-use Domain\ValueObjects\TimeEntry;
+use CwConnector\Domain\ValueObjects\TimeEntry;
 
 //ErrorCodes
-use Domain\ErrorCodes\DomainErrorCodes;
+use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
 //Exceptions
-use Domain\Exceptions\TimeEntry\InvalidDateException;
-use Domain\Exceptions\TimeEntry\InvalidHoursException;
+use CwConnector\Domain\Exceptions\TimeEntry\InvalidDateException;
+use CwConnector\Domain\Exceptions\TimeEntry\InvalidHoursException;
 
 //TestingTools
-use Tests\Support\CwTestCase;
+use CwConnector\Tests\Support\CwTestCase;
 
 class TimeEntryTest extends CwTestCase
 {

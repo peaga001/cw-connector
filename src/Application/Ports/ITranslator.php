@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Application\Ports;
+namespace CwConnector\Application\Ports;
 
 interface ITranslator
 {

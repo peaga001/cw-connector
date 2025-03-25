@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Translators;
+namespace CwConnector\Infrastructure\Translators;
 
 //Ports
-use Application\Ports\ITranslator;
+use CwConnector\Application\Ports\ITranslator;
 
 class FortimeTranslator implements ITranslator
 {

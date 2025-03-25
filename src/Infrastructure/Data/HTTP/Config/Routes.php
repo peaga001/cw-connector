@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Data\HTTP\Config;
+namespace CwConnector\Infrastructure\Data\HTTP\Config;
 
 class Routes
 {

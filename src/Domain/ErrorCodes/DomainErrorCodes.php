@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\ErrorCodes;
+namespace CwConnector\Domain\ErrorCodes;
 
 class DomainErrorCodes
 {

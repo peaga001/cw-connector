@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\ValueObjects;
+namespace CwConnector\Domain\ValueObjects;
 
 class BatchResult
 {

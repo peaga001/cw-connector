@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Domain\Exceptions\Batch;
+namespace CwConnector\Domain\Exceptions\Batch;
 
 //Exceptions
-use Domain\Exceptions\DomainException;
+use CwConnector\Domain\Exceptions\DomainException;
 
 //ErrorCodes
-use Domain\ErrorCodes\DomainErrorCodes;
+use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
 class BatchSendInBackgroundFailedException extends DomainException
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Application\DTOs\Batch;
+namespace CwConnector\Application\DTOs\Batch;
 
 //ValueObjects
-use Domain\ValueObjects\BatchResult;
+use CwConnector\Domain\ValueObjects\BatchResult;
 
 class BatchResultDTO
 {

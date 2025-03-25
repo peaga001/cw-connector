@@ -2,29 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Tests\src\Application\UseCases;
+namespace CwConnector\Tests\src\Application\UseCases;
 
 //ValueObjects
-use Domain\ValueObjects\BatchResult;
+use CwConnector\Domain\ValueObjects\BatchResult;
 
 //UseCases
-use Application\UseCases\GetBatchResultUseCase;
+use CwConnector\Application\UseCases\GetBatchResultUseCase;
 
 //Enums
-use Domain\Enums\BatchStatus;
+use CwConnector\Domain\Enums\BatchStatus;
 
 //ErrorCodes
-use Domain\ErrorCodes\DomainErrorCodes;
+use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
 //Exceptions
-use Domain\Exceptions\Batch\BatchNotFoundException;
-use Domain\Exceptions\Batch\UnfinishedBatchException;
+use CwConnector\Domain\Exceptions\Batch\BatchNotFoundException;
+use CwConnector\Domain\Exceptions\Batch\UnfinishedBatchException;
 
 //Ports
-use Domain\Ports\IRepository;
+use CwConnector\Domain\Ports\IRepository;
 
 //TestingTools
-use Tests\Support\CwTestCase;
+use CwConnector\Tests\Support\CwTestCase;
 use Mockery;
 
 class GetBatchResultUseCaseTest extends CwTestCase

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\src\Domain\ValueObjects;
+namespace CwConnector\Tests\src\Domain\ValueObjects;
 
 //ValueObjects
-use Domain\ValueObjects\BatchResult;
+use CwConnector\Domain\ValueObjects\BatchResult;
 
 //TestingTools
-use Tests\Support\CwTestCase;
+use CwConnector\Tests\Support\CwTestCase;
 
 class BatchResultTest extends CwTestCase
 {

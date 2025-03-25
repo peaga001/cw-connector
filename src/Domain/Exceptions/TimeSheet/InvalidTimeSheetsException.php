@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Domain\Exceptions\TimeSheet;
+namespace CwConnector\Domain\Exceptions\TimeSheet;
 
-use Domain\Exceptions\DomainException;
-use Domain\ErrorCodes\DomainErrorCodes;
+use CwConnector\Domain\Exceptions\DomainException;
+use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
 class InvalidTimeSheetsException extends DomainException
 {

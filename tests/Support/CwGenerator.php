@@ -1,20 +1,20 @@
 <?php
 
-namespace Tests\Support;
+namespace CwConnector\Tests\Support;
 
 //Entities
-use Domain\Entities\TimeSheet;
-use Domain\Entities\Config;
-use Domain\Entities\Batch;
+use CwConnector\Domain\Entities\TimeSheet;
+use CwConnector\Domain\Entities\Config;
+use CwConnector\Domain\Entities\Batch;
 
 //ValueObjects
-use Domain\ValueObjects\BatchResult;
-use Domain\ValueObjects\Property;
-use Domain\ValueObjects\PersonId;
-use Domain\ValueObjects\TimeEntry;
+use CwConnector\Domain\ValueObjects\BatchResult;
+use CwConnector\Domain\ValueObjects\Property;
+use CwConnector\Domain\ValueObjects\PersonId;
+use CwConnector\Domain\ValueObjects\TimeEntry;
 
 //Enums
-use Domain\Enums\DocumentTypes;
+use CwConnector\Domain\Enums\DocumentTypes;
 
 //TestingTools
 use Faker\Generator;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Support\Providers;
+namespace CwConnector\Tests\Support\Providers;
 
-use Domain\Enums\BatchStatus;
+use CwConnector\Domain\Enums\BatchStatus;
 
 final class BatchStatusProvider
 {

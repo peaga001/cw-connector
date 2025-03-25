@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Domain\ValueObjects;
+namespace CwConnector\Domain\ValueObjects;
 
 //Enums
-use Domain\Enums\DocumentTypes;
+use CwConnector\Domain\Enums\DocumentTypes;
 
 //Exceptions
-use Domain\Exceptions\PersonId\InvalidDocumentTypeException;
+use CwConnector\Domain\Exceptions\PersonId\InvalidDocumentTypeException;
 
 class PersonId
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Domain\Ports;
+namespace CwConnector\Domain\Ports;
 
 //Entities
-use Domain\Entities\Batch;
+use CwConnector\Domain\Entities\Batch;
 
 interface IRepository
 {

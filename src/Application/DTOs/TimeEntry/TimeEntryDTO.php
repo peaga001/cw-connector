@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Application\DTOs\TimeEntry;
+namespace CwConnector\Application\DTOs\TimeEntry;
 
 //Exceptions
-use Domain\Exceptions\DomainException;
+use CwConnector\Domain\Exceptions\DomainException;
 
 //ValueObjects
-use Domain\ValueObjects\TimeEntry;
+use CwConnector\Domain\ValueObjects\TimeEntry;
 
 class TimeEntryDTO
 {

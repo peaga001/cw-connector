@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Application\DTOs\Batch;
+namespace CwConnector\Application\DTOs\Batch;
 
 //DTOs
-use Application\DTOs\TimeSheet\TimeSheetDTO;
+use CwConnector\Application\DTOs\TimeSheet\TimeSheetDTO;
 
 //Exceptions
-use Domain\Exceptions\DomainException;
+use CwConnector\Domain\Exceptions\DomainException;
 
 //Entities
-use Domain\Entities\Batch;
+use CwConnector\Domain\Entities\Batch;
 
 class BatchDTO
 {

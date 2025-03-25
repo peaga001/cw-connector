@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Data\HTTP\Clients;
+namespace CwConnector\Infrastructure\Data\HTTP\Clients;
 
 //HTTPConfigs
-use Infrastructure\Data\HTTP\Config\APIConfig;
-use Infrastructure\Data\HTTP\Config\Routes;
+use CwConnector\Infrastructure\Data\HTTP\Config\APIConfig;
+use CwConnector\Infrastructure\Data\HTTP\Config\Routes;
 
 //Exceptions
-use Infrastructure\Data\HTTP\Exceptions\UnauthorizedException;
+use CwConnector\Infrastructure\Data\HTTP\Exceptions\UnauthorizedException;
 
 //GuzzleTools
 use GuzzleHttp\Exception\GuzzleException;

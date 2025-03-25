@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\ValueObjects;
+namespace CwConnector\Domain\ValueObjects;
 
 //Exceptions
-use Domain\Exceptions\TimeEntry\InvalidDateException;
-use Domain\Exceptions\TimeEntry\InvalidHoursException;
+use CwConnector\Domain\Exceptions\TimeEntry\InvalidDateException;
+use CwConnector\Domain\Exceptions\TimeEntry\InvalidHoursException;
 
 //TestingTools
 use DateTime;

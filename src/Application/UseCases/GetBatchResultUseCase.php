@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Application\UseCases;
+namespace CwConnector\Application\UseCases;
 
 //ValueObjects
-use Domain\ValueObjects\BatchResult;
+use CwConnector\Domain\ValueObjects\BatchResult;
 
 //Enums
-use Domain\Enums\BatchStatus;
+use CwConnector\Domain\Enums\BatchStatus;
 
 //Exceptions
-use Domain\Exceptions\Batch\UnfinishedBatchException;
-use Domain\Exceptions\Batch\BatchNotFoundException;
+use CwConnector\Domain\Exceptions\Batch\UnfinishedBatchException;
+use CwConnector\Domain\Exceptions\Batch\BatchNotFoundException;
 
 //Ports
-use Domain\Ports\IRepository;
+use CwConnector\Domain\Ports\IRepository;
 
 class GetBatchResultUseCase
 {

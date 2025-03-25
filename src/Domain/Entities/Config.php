@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Domain\Entities;
+namespace CwConnector\Domain\Entities;
 
 //ValueObjects
-use Domain\ValueObjects\Property;
+use CwConnector\Domain\ValueObjects\Property;
 
 class Config
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Data\HTTP\Clients;
+namespace CwConnector\Infrastructure\Data\HTTP\Clients;
 
 //HTTPConfigs
-use Infrastructure\Data\HTTP\Config\APIConfig;
+use CwConnector\Infrastructure\Data\HTTP\Config\APIConfig;
 
 interface IClient
 {

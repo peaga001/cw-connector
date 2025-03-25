@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Tests\src\Domain\Entities;
+namespace CwConnector\Tests\src\Domain\Entities;
 
 //Entities
-use Domain\Entities\TimeSheet;
+use CwConnector\Domain\Entities\TimeSheet;
 
 //ErrorCodes
-use Domain\ErrorCodes\DomainErrorCodes;
+use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
 //Exceptions
-use Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
+use CwConnector\Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
 
 //TestingTools
-use Tests\Support\CwTestCase;
+use CwConnector\Tests\Support\CwTestCase;
 
 class TimeSheetTest extends CwTestCase
 {

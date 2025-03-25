@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Tests\src\Domain\Entities;
+namespace CwConnector\Tests\src\Domain\Entities;
 
 //Entities
-use Domain\Entities\Batch;
+use CwConnector\Domain\Entities\Batch;
 
 //Enums
-use Domain\Enums\BatchStatus;
+use CwConnector\Domain\Enums\BatchStatus;
 
 //ErrorCodes
-use Domain\ErrorCodes\DomainErrorCodes;
+use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
 //Exceptions
-use Domain\Exceptions\TimeSheet\InvalidTimeSheetsException;
+use CwConnector\Domain\Exceptions\TimeSheet\InvalidTimeSheetsException;
 
 //TestingTools
-use Tests\Support\CwTestCase;
+use CwConnector\Tests\Support\CwTestCase;
 
 class BatchTest extends CwTestCase
 {

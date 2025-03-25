@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Domain\Entities;
+namespace CwConnector\Domain\Entities;
 
 //ValueObjects
-use Domain\ValueObjects\TimeEntry;
-use Domain\ValueObjects\PersonId;
+use CwConnector\Domain\ValueObjects\TimeEntry;
+use CwConnector\Domain\ValueObjects\PersonId;
 
 //Exceptions
-use Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
+use CwConnector\Domain\Exceptions\TimeEntry\InvalidTimeEntriesException;
 
 class TimeSheet
 {

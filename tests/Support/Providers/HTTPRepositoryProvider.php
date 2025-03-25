@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Support\Providers;
+namespace CwConnector\Tests\Support\Providers;
 
 final class HTTPRepositoryProvider
 {

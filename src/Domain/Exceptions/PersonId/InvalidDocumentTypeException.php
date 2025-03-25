@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Domain\Exceptions\PersonId;
+namespace CwConnector\Domain\Exceptions\PersonId;
 
 //Exceptions
-use Domain\Exceptions\DomainException;
+use CwConnector\Domain\Exceptions\DomainException;
 
 //ErrorCodes
-use Domain\ErrorCodes\DomainErrorCodes;
+use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
 class InvalidDocumentTypeException extends DomainException
 {

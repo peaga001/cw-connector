@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Tests\src\Domain\ValueObjects;
+namespace CwConnector\Tests\src\Domain\ValueObjects;
 
 //Enums
-use Domain\Enums\DocumentTypes;
+use CwConnector\Domain\Enums\DocumentTypes;
 
 //Exceptions
-use Domain\Exceptions\PersonId\InvalidDocumentTypeException;
+use CwConnector\Domain\Exceptions\PersonId\InvalidDocumentTypeException;
 
 //ErrorCodes
-use Domain\ErrorCodes\DomainErrorCodes;
+use CwConnector\Domain\ErrorCodes\DomainErrorCodes;
 
 //ValueObjects
-use Domain\ValueObjects\PersonId;
+use CwConnector\Domain\ValueObjects\PersonId;
 
 //TestingTools
 use PHPUnit\Framework\Attributes\DataProviderExternal;
-use Tests\Support\Providers\DocumentTypesProvider;
-use Tests\Support\CwTestCase;
+use CwConnector\Tests\Support\Providers\DocumentTypesProvider;
+use CwConnector\Tests\Support\CwTestCase;
 
 class PersonIdTest extends CwTestCase
 {

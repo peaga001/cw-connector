@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Domain\Entities;
+namespace CwConnector\Domain\Entities;
 
 //ValueObjects
-use Domain\ValueObjects\BatchResult;
+use CwConnector\Domain\ValueObjects\BatchResult;
 
 //Enums
-use Domain\Enums\BatchStatus;
+use CwConnector\Domain\Enums\BatchStatus;
 
 //Exceptions
-use Domain\Exceptions\TimeSheet\InvalidTimeSheetsException;
+use CwConnector\Domain\Exceptions\TimeSheet\InvalidTimeSheetsException;
 
 class Batch
 {

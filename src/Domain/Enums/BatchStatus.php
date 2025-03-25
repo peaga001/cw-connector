@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Enums;
+namespace CwConnector\Domain\Enums;
 
 enum BatchStatus: int
 {

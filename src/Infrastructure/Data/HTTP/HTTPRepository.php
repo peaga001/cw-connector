@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Data\HTTP;
+namespace CwConnector\Infrastructure\Data\HTTP;
 
 //DTOs
-use Application\DTOs\Batch\BatchDTO;
+use CwConnector\Application\DTOs\Batch\BatchDTO;
 
 //Exceptions
-use Domain\Exceptions\DomainException;
+use CwConnector\Domain\Exceptions\DomainException;
 
 //HTTPConfigs
-use Infrastructure\Data\HTTP\Clients\IClient;
-use Infrastructure\Data\HTTP\Config\Routes;
+use CwConnector\Infrastructure\Data\HTTP\Clients\IClient;
+use CwConnector\Infrastructure\Data\HTTP\Config\Routes;
 
 //Entities
-use Domain\Entities\Batch;
+use CwConnector\Domain\Entities\Batch;
 
 //Ports
-use Domain\Ports\IRepository;
+use CwConnector\Domain\Ports\IRepository;
 
 class HTTPRepository implements IRepository
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Support\Providers;
+namespace CwConnector\Tests\Support\Providers;
 
-use Domain\Enums\DocumentTypes;
+use CwConnector\Domain\Enums\DocumentTypes;
 
 final class DocumentTypesProvider
 {

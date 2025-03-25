@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Data\HTTP\Exceptions;
+namespace CwConnector\Infrastructure\Data\HTTP\Exceptions;
 
 class HTTPErrorCodes
 {

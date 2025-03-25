@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Application\UseCases;
+namespace CwConnector\Application\UseCases;
 
 //ValueObjects
-use Domain\ValueObjects\BatchResult;
+use CwConnector\Domain\ValueObjects\BatchResult;
 
 //Entities
-use Domain\Entities\Batch;
+use CwConnector\Domain\Entities\Batch;
 
 //Exceptions
-use Domain\Exceptions\Batch\BatchSendFailedException;
+use CwConnector\Domain\Exceptions\Batch\BatchSendFailedException;
 
 //Ports
-use Domain\Ports\IRepository;
+use CwConnector\Domain\Ports\IRepository;
 
 class SendBatchUseCase
 {
