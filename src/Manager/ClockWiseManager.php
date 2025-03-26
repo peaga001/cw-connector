@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CwConnector;
+namespace CwConnector\Manager;
 
 //Ports
 use CwConnector\Application\Ports\ITranslator;
@@ -30,7 +30,7 @@ use CwConnector\Domain\Exceptions\Batch\UnfinishedBatchException;
  * checking current statuses, and sending batches for immediate or background processing.
  * This class provides an interface to efficiently handle batch-related operations.
  */
-class ClockWiseManager
+class ClockWiseManager implements ICWManager
 {
     private readonly GetBatchResultUseCase $getBatchResultUseCase;
     private readonly GetCurrentBatchStatusUseCase $getCurrentBatchStatusUseCase;
@@ -51,7 +51,6 @@ class ClockWiseManager
 
     /**
      * Get the return of the processed batch
-     * @
      * @param string $batchId
      * @return array
      * @throws BatchNotFoundException
