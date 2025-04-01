@@ -64,7 +64,7 @@ class Config
      */
     public function set(string $key, mixed $value): void
     {
-        $this->properties[] = Property::create(key: $key, value: $value);
+        $this->properties[$key] = Property::create(key: $key, value: $value);
     }
 
     /**

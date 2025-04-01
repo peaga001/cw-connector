@@ -34,11 +34,4 @@ class Property
     {
         return $this->value;
     }
-
-    public function toArray(): array
-    {
-        return [
-            $this->key => $this->value
-        ];
-    }
 }
