@@ -75,7 +75,7 @@ class Config
         $properties = [];
 
         foreach ($this->properties as $property){
-            $properties[] = $property->toArray();
+            $properties[$property->getKey()] = $property->getValue();
         }
 
         return $properties;
